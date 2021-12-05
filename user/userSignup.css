@@ -1,0 +1,299 @@
+html, body{
+	overflow-x: hidden;
+}
+body{
+  background-color: #9DC3E6;
+  font-family: Poppins;
+  margin: 0;
+  padding: 0;
+}
+::-webkit-scrollbar {
+      width: 0px;
+      background: transparent; /* make scrollbar transparent */
+  }
+  header {
+    background-color: #141b25;
+  }
+  .main-nav {
+    height: 90px;
+    padding-top: 10px;
+    display:block; 
+  }
+  .logo {
+    color: #4E4F62;
+        line-height: 90px;
+        font-size: 27pt;
+        font-weight: bold;
+        text-decoration: none;
+        margin-left: 30px;
+        font-family: "Roboto", sans-serif;
+       
+      background-color: transparent;
+      background-image: url(images/brain.png);
+      background-repeat: no-repeat;
+      background-size: 60px;
+      padding-left: 50px;
+  }
+    .navlinks {
+    list-style: none;
+    float: right;
+    line-height: 90px;
+    margin: 0;
+    padding: 0px;
+    /*border-style: solid;
+    border-color: coral;*/
+    font-family: Poppins;
+  }
+  .navlinks li {
+    display: inline-block;
+    margin: 0px -30px;
+  }
+  .navlinks li a {
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+    transition: all 0.3s linear 0s;
+    margin: 100px;
+    padding: 0px;
+  }
+  .navlinks li a:hover {
+    color: #4663E5;
+    padding-bottom: 7px;
+    border-bottom: 2px solid #7ebcb9;
+  }
+  li a.signIn {
+    background-color: #4BD6F3;
+    color: #F1F3FF;
+    padding: 9px 20px;
+    border-radius: 9px;
+    transition: all 0.3s ease 0s;
+    border-bottom: none;
+  }
+  li a.signIn:hover {
+    background-color: #047e85;
+    color: white;
+    border-bottom: none;
+  }
+  input[type=submit]:hover {
+        background-color: rgba(80, 101, 175, .9);
+      }
+      #check {
+    display: none;
+  }
+  .menu-btn {
+    font-size: 25px;
+    color: #4663E5;
+    float: right;
+    line-height: 100px;
+    margin-right: 20px;
+    display: none;
+    cursor: pointer;
+  }
+  @media (max-width: 1280px) {
+    .navlinks {
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      text-align: center;
+      transition: all 0.5s;
+      right: -100%;
+      background: #8FAADC;
+       z-index:1
+    }
+    .navlinks li {
+      display: block;
+
+    }
+    .navlinks li a {
+      color: black;
+      text-decoration: none;
+      font-size: 15px;
+      transition: all 0.1s linear 0s;
+      margin: 80px;
+    }
+    .navlinks li a:hover {
+     color: #4663E5;
+      padding-bottom: 7px;
+      border-bottom: 2px solid #7ebcb9;
+    }
+    .menu-btn {
+      display: block;
+    }
+    #check:checked ~ .navlinks {
+      right: 0;
+    }
+  }
+  @media (max-width: 360px) {
+
+    .menu-btn {
+      margin-right: 10px;
+      font-size: 25px;
+    }
+    .menu-btn:focus {
+      color: blue;
+    }
+
+  }
+  a{
+  padding-left: 50px;
+  padding-right: 50px;
+  text-decoration: none;
+}
+img{
+        width: auto;
+  height: 250px;
+  padding-left: auto;
+  padding-right: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+    }
+    form{
+        width: 350px;
+        margin-left: 15px;
+        align-content: left;
+        padding-right: 150px;
+        padding-left: 20px;
+        resize: vertical;
+    }
+    input[type=text], input[type=password],input[type=email], input[type=tel], input[type=date],select, textarea {
+        
+        width: 80%;
+      height: 40px;
+      display: block;
+      border: 1px solid  #D1D0D0;
+      resize: none;
+      border-radius: 5px;
+      padding-left: 15px;
+      font-size: 9pt;
+      align-self: center;
+      margin-bottom: 15px;
+      font-family: Poppins;
+      }
+      @media screen and (max-width: 600px) {
+      .col-25, .col-75, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+      }
+    }
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+      input:focus { 
+        outline: none !important;
+        border-color: #4BD6F3;
+        box-shadow: 0 0 10px #4BD6F3;
+        box-shadow: #4BD6F3 0px 0px 1px, #4BD6F3 0px 0px 0px 1px;
+ }
+ input[type=submit] {
+        width: 130px;
+        height: 50px;
+        background-color: #4663E5;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        float: left;
+        font-family: Poppins;
+        font-size: 16px;
+}
+.dont{
+        font-size: 9pt;
+        margin-right: -50px;
+    }
+    .click{
+        margin-left: -50px;
+    }
+    p{
+        font-size: 20pt;
+    }
+    label{
+        font-size: 10pt;
+    }
+    a:hover{
+      color: rgba(80, 101, 175, .7);
+    }
+    .terapia{
+      font-size: 30pt;
+      color: #4F64AF;
+      cursor: pointer;
+    }
+    .terapia:hover{
+      color: rgba(80, 101, 175, .7);
+      cursor: pointer;
+    }
+    input[type=checkbox]{
+  margin-top: 15px;
+  height: 13px;
+  width: 13px;
+  padding-top: 100px;
+  cursor: pointer;
+}
+.agreement{
+  display: block;
+  padding-left: 12px;
+  text-indent: -15px;
+  font-size: 10pt;
+ margin-right: 4px;
+ margin-bottom: -20px;
+}
+#checks{
+  text-decoration: underline;
+
+}
+#terms{
+  color: #607AE9;
+  text-decoration: underline;
+  cursor: pointer;
+}
+#terms:hover{
+
+}
+h2{
+	font-weight: normal;
+}
+  @media (max-width: 1360px) {
+    .logo{
+        font-size: 4vh;
+        background-size: 15%;
+        margin-top: 20px;
+
+      }
+      .psico{
+        margin-left: -4px;
+        font-size: 1.5rem;
+      }
+      .terapia{
+        font-size: 1.5rem;
+      }
+      img{
+      	margin-top: 20px;
+      }
+  }
+  
+.whole{
+  background-color: #F1F3FF;
+        height: auto;
+        width: 25%;
+        height: auto;
+        padding: 1% 1% 1% 1%;
+        border-radius: 15px;
+        margin: auto;
+        min-width: 350px;
+        flex-direction: row;
+        justify-content: space-around;
+        flex-flow: wrap;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+         margin-top: 20px;
+  
+}  
+label{
+      color: #485EAB;
+      cursor: pointer;
+    }
+.psico{
+        color: #4E4F5D;
+      }

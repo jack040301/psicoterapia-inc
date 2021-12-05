@@ -1,0 +1,283 @@
+.containers{
+      background-color: #F1F3FF;
+      border-radius: 25px;
+      margin:0px;
+        height:100%;
+        width: 90%;
+        margin: auto;
+        margin-top: 3%;
+        margin-bottom: 50px;
+        padding-bottom: -50px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+        font-family: Poppins;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #F1F3FF;
+      font-family: Poppins;
+      }
+      ::-webkit-scrollbar {
+          width: 0px;
+          background: transparent; /* make scrollbar transparent */
+      }
+      header {
+        background-color: #141b25;
+      }
+      .main-nav {
+        height: 90px;
+        padding-top: 18px;
+      }
+      .logo {
+        color: #4E4F62;
+        line-height: 90px;
+        font-size: 27pt;
+        font-weight: bold;
+        text-decoration: none;
+        margin-left: 30px;
+        font-family: "Roboto", sans-serif;
+       
+      background-color: transparent;
+      background-image: url(userDesigns/user_images/brain.png);
+      background-repeat: no-repeat;
+      background-size: 60px;
+      padding-left: 50px;
+      }
+      .logo:hover{
+        text-decoration: none;
+         color: #4E4F62;
+      }
+      .navlinks {
+        list-style: none;
+        float: right;
+        line-height: 90px;
+        margin: 0;
+        padding: 0;
+        font-family: Poppins;
+      }
+      .navlinks li {
+        display: inline-block;
+        margin: 0px -30px;
+      }
+      .navlinks li a {
+        color: black;
+        text-decoration: none;
+        font-size: 18px;
+        transition: all 0.1s linear 0s;
+        margin: 100px;
+      }
+      .navlinks li a:hover {
+        color: #4663E5;
+        padding-bottom: 7px;
+        border-bottom: 2px solid #7ebcb9;
+      }
+      .active{
+        border-bottom: 2px solid #34626C;
+        border-radius:1px;
+        color: green;
+      }
+      li a.signIn {
+        background-color: #4BD6F3;
+        color: #F1F3FF;
+        padding: 9px 20px;
+        border-radius: 9px;
+        transition: all 0.3s ease 0s;
+        border-bottom: none;
+      }
+      li a.signIn:hover {
+        background-color: #047e85;
+        color: white;
+        border-bottom: none;
+      }
+      #check {
+        display: none;
+      }
+      .menu-btn {
+        font-size: 25px;
+        color: #4663E5;
+        float: right;
+        line-height: 90px;
+        margin-right: 40px;
+        display: none;
+        cursor: pointer;
+      }
+      @media (max-width: 1280px) {
+        .navlinks {
+          position: fixed;
+          width: 100%;
+          height: 100vh;
+          text-align: center;
+          transition: all 0.5s;
+          right: -100%;
+          background: #8FAADC;
+          z-index:1
+        }
+        .navlinks li {
+          display: block;
+
+        }
+        .navlinks li a {
+         color: black;
+      text-decoration: none;
+      font-size: 15px;
+      transition: all 0.1s linear 0s;
+      margin: 80px;
+        }
+        .navlinks li a:hover {
+          color: #4663E5;
+      padding-bottom: 7px;
+      border-bottom: 2px solid #7ebcb9;
+        }
+        .menu-btn {
+          display: block;
+        }
+
+        #check:checked ~ .navlinks {
+          right: 0;
+        }
+      }
+      @media (max-width: 1280px) {
+        .logo {
+        font-size: 25px;
+        background-size: 20%;
+      }
+        .content{
+      margin-left: 0px;
+      margin-right: 0px;
+      text-align: justify;
+    }
+      #support{
+
+      }
+      }
+      
+      @media (max-width: 1360px) {
+        .logo{
+        font-size: 4vh;
+        background-size: 28%;
+        margin-top: 20px;
+      }
+      .psico{
+        margin-left: -4px;
+        font-size: 1.5rem;
+      }
+      .terapia{
+        font-size: 1.5rem;
+      }
+      }
+      @media (max-width: 360px) {
+        /*.logo {
+          margin-left: 10px;
+          font-size: 25px;
+        }*/
+        .menu-btn {
+          margin-right: 10px;
+          font-size: 25px;
+        }
+        .menu-btn:focus {
+          color: blue;
+        }
+      }
+      label{
+      color: #485EAB;
+      cursor: pointer;
+    }
+    .psico{
+        color: #4E4F5D;
+      }
+    .content{
+      margin-left: 50px;
+      margin-right: 50px;
+      text-align: justify;
+      font-family: Poppins;
+    }
+    .foots{
+      width: 100%;
+      height: auto;
+      background-color: transparent;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      flex-flow: wrap;
+    }
+    .footer1{
+      background-color: transparent;
+      height: 300px;
+      width: 300px;
+      box-sizing: border-box;
+      transform: transform: translate(-50%, -50%);
+      padding-top: 30px;
+      float: left;
+      min-height: 5vh;
+      min-width: 5vh;
+      display: inline-block;
+      font-family: Poppins;
+    }
+
+    .facebook{
+
+    }
+    .instagram{
+     
+      background-repeat: no-repeat;
+      background-size: 25px 25px;
+    }
+    .twitter{
+      background-repeat: no-repeat;
+      background-size: 25px 25px;
+    }
+    footer{
+      margin-top: 50px;
+      background-color: #DEEBF7;
+      padding-left: 0;
+    }
+    .logoBottom{
+      height: 50px;
+      width: 350px;
+      background-color: transparent;
+      background-image: url(userDesigns/user_images/noLabelLogo.png);
+      background-repeat: no-repeat;
+      background-size: 50px;
+    }
+    .logonameBot{
+      margin-left: 53px;
+      padding-top: 9px;
+      font-family: Roboto;
+      font-weight: bold;
+      font-size: 15pt;
+      color: #4E4F62;
+    }
+    
+    .learn{
+      color: #555658;
+      padding: 5px;
+    }
+    .learn:hover{
+      text-decoration: none;
+    }
+    .lbl{
+    font-family: Poppins;
+    margin-top: 10px;
+    margin-bottom: -5px;
+  }
+  #fname, #email, #mobile{
+    width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+        height: 40px;
+        font-family: Poppins;
+  }
+    input:focus { 
+        outline: none !important;
+        border-color: #4BD6F3;
+        box-shadow: 0 0 10px #4BD6F3;
+        box-shadow: #4BD6F3 0px 0px 1px, #4BD6F3 0px 0px 0px 1px;
+ }
+ .btn{
+  margin-top: 15px;
+    background-color: #4663E5; 
+    color: #F1F3FF; 
+    font-family: Poppins;
+ }

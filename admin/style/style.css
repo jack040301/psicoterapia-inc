@@ -1,0 +1,195 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: "Poppins" , "Roboto", sans-serif;
+    color: #000000;
+}
+
+*::-webkit-scrollbar{
+    display: none;
+}
+.btn-primary:hover{
+    background-color: #F1F3FF;
+    color: #5065AF;
+}
+.swal-text{
+    font-family: "Roboto";
+    padding: 17px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: #4C4D5B;
+}
+div.sidebar{
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 78px;
+    background: #F1F3FF;
+    padding: 6px 14px;
+    z-index: 99;
+    transition: all 0.5s ease;
+}
+div.sidebar.open{
+    width: 250px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+div.sidebar div.logo_details{
+    height: 60px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+div.sidebar div.logo_details .icon{
+    opacity: 0;
+    transition: all 2.5s ease;
+}
+div.sidebar div.logo_details div.logo_name{
+    color: #4663E5;
+    font-size: 20px;
+    font-weight: 600;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+div.sidebar.open div.logo_details .icon,
+div.sidebar.open div.logo_details .logo_name{
+  opacity: 1;
+}
+div.sidebar div.logo_details #btn{
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  font-size: 22px;
+  transition: all 0.4s ease;
+  font-size: 23px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+div.sidebar.open div.logo_details img{
+    opacity: 1;
+  }
+div.sidebar.open div.logo_details #btn{
+  text-align: right;
+}
+div.sidebar i{
+    color: #4663E5;
+    height: 60px;
+    min-width: 50px;
+    font-size: 28px;
+    text-align: center;
+    line-height: 60px;
+}
+div.sidebar ul.-list{
+    margin-top: 20px;
+    height: 100%;
+}
+ul.nav-list{
+    padding-left: 0px;
+}
+div.sidebar li{
+    position: relative;
+    margin: 8px 0;
+    list-style: none;
+}
+div.sidebar li span.tooltip{
+    position: absolute;
+    top: -20px;
+    left: calc(100% + 15px);
+    z-index: 3;
+    background: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 400;
+    opacity: 0;
+    white-space: nowrap;
+    pointer-events: none;
+    transition: 0s;
+}
+div.sidebar li:hover span.tooltip{
+    opacity: 1;
+    pointer-events: auto;
+    transition: all 0.4s ease;
+    top: 50%;
+    transform: translateY(-50%);
+}
+div.sidebar.open li span.tooltip{
+    display: none;
+}
+div.sidebar li a{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    border-radius: 12px;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    background: #F1F3FF;
+}
+div.sidebar li a:hover{
+    background: #DAE3F3;
+}
+div.sidebar li a span.links_name{
+    color: #8FAADC;
+    font-size: 15px;
+    font-weight: 400;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.4s;
+}
+div.sidebar.open li a span.links_name{
+    opacity: 1;
+    pointer-events: auto;
+}
+div.sidebar li a:hover span.links_name,
+div.sidebar li a:hover a{
+    transition: all 0.5s ease;
+    color: #4663E5;
+}
+div.sidebar li i{
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    border-radius: 12px;
+}
+section.home-section{
+    position: relative;
+    background: #FFFFFF;
+    min-height: 100vh;
+    padding:50px;
+    top: 0;
+    left: 78px;
+    width: calc(100% - 78px);
+    transition: all 0.5s ease;
+    z-index: 2;
+    text-align: left;
+}
+div.sidebar.open ~ section.home-section{
+    left: 250px;
+    width: calc(100% - 250px);
+}
+@media (max-width: 420px) {
+    div.sidebar li span.tooltip{
+        display: none;
+    }
+}
+th{
+    padding: 10px 10px;
+    color: gray;
+    font-weight: bold;
+    text-align: left;
+    font-size: 10pt;
+}
+td{
+    padding: 5px 10px;
+    text-align: left;
+    font-size: 9pt;
+}
+  
