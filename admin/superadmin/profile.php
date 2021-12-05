@@ -123,7 +123,7 @@
                                 </tr>
                                 <tr>
                                     <form action="profile.php" method="post">
-                                    <td><input type="date" name="birthday" style="font-size:9pt;" class="form-control" ondrop="return false;" onpaste="return false;" required="Required"></td>
+                                    <td><input type="date" name="birthday" style="font-size:9pt;" max="<?php echo $lastYear = date("Y-m-d", strtotime("-18 years")); ?>" class="form-control" ondrop="return false;" onpaste="return false;" required="Required"></td>
                                     <td><input name="change_birthday" type="submit" value="Change" style="background:none; border:none;color:#5065AF;"></td>
                                     </form>
                                 </tr>
