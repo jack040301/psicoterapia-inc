@@ -162,9 +162,14 @@
     $total_appointments = $fetch_appointments['total_appointment'];
 
     // ratings
-    $success_rates = ($total_success_appointments)/($total_cancelled_appointments+$total_success_appointments)*100;
-    $cancelled_rates = ($total_cancelled_appointments)/($total_success_appointments+$total_cancelled_appointments)*100;
-    $expired_rates = ($total_expired_appointments)/($total_appointments)*100;
+        $success_rates = 0;
+        $cancelled_rates = 0;
+        $expired_rates = 0;
+        if($total_success_appointments != 0 || $total_yesterday_cancelled_appointments != 0 || $total_yesterday_expired_appointments != 0){
+            $success_rates = ($total_success_appointments)/($total_cancelled_appointments+$total_success_appointments)*100;
+            $cancelled_rates = ($total_cancelled_appointments)/($total_success_appointments+$total_cancelled_appointments)*100;
+            $expired_rates = ($total_expired_appointments)/($total_appointments)*100;
+        }
 
     }   
 
@@ -816,6 +821,7 @@
         $password = "Admin";
         $code = 0;
         $status = "online";
+	$position = 'doctor';
 
         $check_email_query = "SELECT * FROM tbl_employee WHERE email = '$email'";
         $check_email = mysqli_query($connect, $check_email_query);
@@ -826,7 +832,7 @@
         else{
             $encrypted_password = password_hash($password, PASSWORD_BCRYPT);
 
-            $insert_data_query = "INSERT INTO tbl_employee (picture, lastname, firstname, birthday, mobile, email, password, code, status, created) values('$picture','$lastname','$firstname','$birthday','$contact','$email','$encrypted_password','$code','$status','$today_date')";
+            $insert_data_query = "INSERT INTO tbl_employee (picture, position, lastname, firstname, birthday, mobile, email, password, code, status, created) values('$picture','$position','$lastname','$firstname','$birthday','$contact','$email','$encrypted_password','$code','$status','$today_date')";
             $insert_data = mysqli_query($connect, $insert_data_query);
             if($insert_data){
                 $plname = ucwords($lastname);
