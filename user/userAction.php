@@ -574,38 +574,47 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 	//
 
-	else if( isset($_POST['btn_appointment']) == "book"){
-$checkappointment = mysqli_query($conn,"SELECT * FROM tbl_appointment WHERE userID = '{$_SESSION['userID']}'");
-		if(mysqli_num_rows($checkappointment) > 0){
-			
-			// echo "asd";
-			$fetchdata = mysqli_fetch_assoc($checkappointment);
-			$fetchDatepicked = $fetchdata['user_pickedDate'];
-			$fetchdoctorName = $fetchdata['user_pickedDoctor'];
-			$fetchTimepicked = $fetchdata['user_pickedTime'];
-			
-			if($datepick != $fetchDatepicked){
-				// echo "xxx";
-				$_SESSION['CopyOfdisplaydoctor'] = $displaydoctor;
-				$_SESSION['CopyOfdatepick'] = $datepick;
-				$_SESSION['CopyOfdisplaytime'] = $displaytime;
-				header('location: insertAppointment.php');
-				exit();
-			}else{
-			// echo "///";
-				echo "<script>
-				alert('You already have an Appointment For this day, Please Check Your Email');
-				window.location.href='Appointment.php';
-				</script>";
-			}		
-			
-		}else{
-			$_SESSION['CopyOfdisplaydoctor'] = $displaydoctor;
-			$_SESSION['CopyOfdatepick'] = $datepick;
-			$_SESSION['CopyOfdisplaytime'] = $displaytime;
-			header('location: insertAppointment.php');
-			exit();
-		}
+	else if( isset($_POST['btn_appointment'])){
+		// echo "xxx";
+		// header('Location: userSummary.php');
+		// 				exit();
+		
+		// $checkappointment = mysqli_query($conn,"SELECT date as C1 FROM tbl_appts WHERE userID = '{$_SESSION['userID']}'");
+		// if(mysqli_num_rows($checkappointment) > 0){
+		// 	$hasnosamedate = TRUE;
+		// 	for($i = 1; $i <= mysqli_num_rows($checkappointment); $i++){
+		// 		// echo $i;
+		// 		$date = mysqli_fetch_assoc($checkappointment);
+		// 		$datecheck = $date['C1'];
+		// 		if($datepick == $datecheck){
+		// 			$hasnosamedate = FALSE;
+		// 			break;
+		// 		}
+		// 	}
+		// 	if($hasnosamedate == TRUE){
+		// 		// echo $datepick;
+		// 		// $_SESSION['CopyOfdoctor'] = $docid;
+		// 		// $_SESSION['CopyOfdatepick'] = $datepick;
+		// 		// $_SESSION['CopyOfdisplaytime'] = $displaytime;
+		// 		// header('location:insertAppointment.php');
+		// 		// exit();
+
+		// 	}else{
+		// 		echo "<script>
+		// 		alert('You already have an Appointment For this day, Please Check Your Email');
+		// 		window.location.href='Appointment.php';
+		// 		</script>";
+		// 	}
+
+		// }else{
+		// 	// echo "///";
+		// 	$_SESSION['CopyOfdoctor'] = $docid;
+		// 	$_SESSION['CopyOfdatepick'] = $datepick;
+		// 	$_SESSION['CopyOfdisplaytime'] = $displaytime;
+		// 	header('location:insertAppointment.php');
+		// 	exit();
+		// }
+		
 	}//appointment
 
 

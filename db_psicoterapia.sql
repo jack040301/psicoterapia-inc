@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2021 at 02:50 AM
+-- Generation Time: Dec 05, 2021 at 05:06 PM
 -- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.10
+-- PHP Version: 8.0.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,40 +24,53 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_appointments`
+-- Table structure for table `tble_doctors`
 --
 
-CREATE TABLE `tbl_appointments` (
-  `id` int(11) NOT NULL,
-  `lastname` varchar(255) NOT NULL,
-  `firstname` varchar(255) NOT NULL,
-  `birthday` date NOT NULL,
-  `picture` text DEFAULT NULL,
-  `mobile` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `date` date NOT NULL,
-  `time` time NOT NULL,
-  `doctor` varchar(255) NOT NULL,
-  `doc_id` int(11) DEFAULT NULL,
-  `concern` varchar(255) DEFAULT NULL,
-  `status` varchar(255) NOT NULL,
-  `userID` int(11) NOT NULL
+CREATE TABLE `tble_doctors` (
+  `name` text NOT NULL,
+  `profession` text NOT NULL,
+  `time` text NOT NULL,
+  `availability` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tbl_appointments`
+-- Dumping data for table `tble_doctors`
 --
 
-INSERT INTO `tbl_appointments` (`id`, `lastname`, `firstname`, `birthday`, `picture`, `mobile`, `email`, `date`, `time`, `doctor`, `doc_id`, `concern`, `status`, `userID`) VALUES
-(1, 'kanawut', 'traipipattanapong', '1997-12-04', 'kanawut.jpg', '09123456789', 'kanawut@gmail.com', '2021-12-01', '09:00:00', 'august@gmail.com', 1, 'headache', 'done', 0),
-(2, 'kiennukul', 'pattarabut', '1992-11-19', 'kiennukul.jpg', '09123456789', 'kiennukul@gmail.com', '2021-12-01', '09:00:00', 'august@gmail.com', 1, 'eating disorder', 'done', 0),
-(3, 'jutamas', 'chayapol', '2001-03-09', 'jutamas.jpg', '09123456789', 'jutamas@gmail.com', '2021-12-01', '09:00:00', 'august@gmail.com', 1, 'difficult to sleep', 'cancelled', 0),
-(4, 'chusakdiskulwibul', 'siriphong', '1989-11-02', 'chusakdiskulwibul.jpg', '09123456789', 'chusakdiskulwibul@gmail.com', '2021-12-01', '09:00:00', 'august@gmail.com', 1, 'headache', 'expired', 0),
-(19, 'udompanich', 'krittapak', '2001-01-12', 'udompanich.jpg', '09123456789', 'udompanich@gmail.com', '2021-12-03', '10:00:00', 'pakorn@gmail.com', 2, 'personality disorders', 'done', 0),
-(20, 'ngamkamolchai', 'thanabat', '1994-03-22', 'ngamkamolchai.jpg', '09123456789', 'ngamkamolchai@gmail.com', '2021-12-03', '10:00:00', 'pakorn@gmail.com', 2, 'headache', 'done', 0),
-(21, 'guntachai', 'noppanut', '1995-07-10', 'guntachai.jpg', '09123456789', 'guntachai@gmail.com', '2021-12-04', '10:00:00', 'august@gmail.com', 1, 'impulse control disorders', 'expired', 0),
-(33, 'porral', 'jack', '2021-11-18', '61abfa5f5307d0.33674148.png', '', 'jackdaisuki04@gmail.com', '2021-12-05', '13:00:00', 'august@gmail.com', 1, 'headachess', 'done', 3),
-(34, 'porral', 'jack', '2021-11-18', 'default.png', '', 'jackdaisuki04@gmail.com', '2021-12-05', '13:00:00', 'august@gmail.com', 1, 'headachess', 'pending', 3);
+INSERT INTO `tble_doctors` (`name`, `profession`, `time`, `availability`) VALUES
+('Jacqueline Porral', 'Depression', '9:00', 'Available'),
+('Danica Cabullo', 'Depression', '5:00', 'Unavailable'),
+('Demverleen Espinola', 'Depression', '9:00AM', 'Available'),
+('Jeffrix Briol', 'Depression', '5:00PM', 'Unavailable'),
+('Alex Caberto', 'Depression', '10:00AM', 'Available'),
+('Nikki Baalan', 'Depression', '10:00AM', 'Available'),
+('Danica Cabullo', 'Depression', '5:00', 'Unavailable'),
+('Jacqueline Porral', 'Depression', '9:00', 'Available');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_appts`
+--
+
+CREATE TABLE `tbl_appts` (
+  `apptID` text NOT NULL,
+  `userID` text NOT NULL,
+  `docID` text NOT NULL,
+  `date` text NOT NULL,
+  `time` text NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `apptDateCreated` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_appts`
+--
+
+INSERT INTO `tbl_appts` (`apptID`, `userID`, `docID`, `date`, `time`, `status`, `apptDateCreated`) VALUES
+('1', '3', '1', '2021-12-06', '13:00:00', 'default', '12-05-2021'),
+('2', '3', '2', '2021-12-08', '14:00:00', 'default', '12-05-2021');
 
 -- --------------------------------------------------------
 
@@ -83,6 +96,26 @@ CREATE TABLE `tbl_company` (
 
 INSERT INTO `tbl_company` (`id`, `companyname1`, `companyname2`, `companyname3`, `companylogo`, `organization`, `establish`, `mobile`, `email`) VALUES
 (1, 'psico', 'terapia', NULL, 'logo.png', 'incorporation', '2021-11-25', '9210531673', 'psicoterapiainc@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_doctorstime`
+--
+
+CREATE TABLE `tbl_doctorstime` (
+  `time_id` int(11) NOT NULL,
+  `time_description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_doctorstime`
+--
+
+INSERT INTO `tbl_doctorstime` (`time_id`, `time_description`) VALUES
+(1, '9:00 AM'),
+(2, '10:00 AM'),
+(3, '1:00 PM');
 
 -- --------------------------------------------------------
 
@@ -200,77 +233,19 @@ CREATE TABLE `tbl_useraccount` (
 --
 
 INSERT INTO `tbl_useraccount` (`userID`, `userImage`, `userGivenName`, `userSurname`, `userFullname`, `userUsername`, `userContactNumber`, `userAddress`, `userBirthday`, `userAge`, `userEmail`, `userPassword`, `userCode`, `userFPCode`, `userStatus`) VALUES
-('1', '', 'Dem', 'ROvira', 'Dem ROvira', 'leonida', '09673222205', 'BLOCK 39 LOT 15', '1997-01-28', '24', 'demverleenespinola07@gmail.com', '4tJvStt3a9X1w/M5', '0', '0', 'verified'),
+('1', '', 'Dem', 'ROvira', 'Dem ROvira', 'leonida', '09673222205', 'BLOCK 39 LOT 15', '1997-01-28', '24', 'demverleenespinola07@gmail.com', 'spM4Gpog', '0', '0', 'verified'),
 ('2', '', 'DEMVERLEEN', 'ESPINOLA', 'DEMVERLEEN ESPINOLA', 'DEM', '09673522220', 'CALOOCAN CITY', '1999-10-07', '22', 'espinola.demverleen.bscs2019@gmail.com', '4tJvStt3a9X1w/M5', '0', '0', 'verified'),
-('3', 'default.png', 'jack', 'porral', 'jack porral', 'asdasd', '', 'BLK 1 LOT 11', '2021-11-18', '0', 'jackdaisuki04@gmail.com', '4tJvGpogbtLw', '0', '0', 'verified');
+('3', 'uploads/default.png', 'DEM', 'ESPINOLA', 'DEM ESPINOLA', 'ASD', '09673222205', 'CALOOCAN CITY', '1999-10-07', '22', 'espinola.demverleen@gmail.com', 'spM4', '0', '0', 'verified');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `tbl_appointments`
+-- Indexes for table `tbl_doctorstime`
 --
-ALTER TABLE `tbl_appointments`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tbl_company`
---
-ALTER TABLE `tbl_company`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tbl_employee`
---
-ALTER TABLE `tbl_employee`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tbl_superadmin`
---
-ALTER TABLE `tbl_superadmin`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tbl_time`
---
-ALTER TABLE `tbl_time`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `tbl_appointments`
---
-ALTER TABLE `tbl_appointments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
-
---
--- AUTO_INCREMENT for table `tbl_company`
---
-ALTER TABLE `tbl_company`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `tbl_employee`
---
-ALTER TABLE `tbl_employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `tbl_superadmin`
---
-ALTER TABLE `tbl_superadmin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `tbl_time`
---
-ALTER TABLE `tbl_time`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+ALTER TABLE `tbl_doctorstime`
+  ADD PRIMARY KEY (`time_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

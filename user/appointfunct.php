@@ -1,81 +1,54 @@
-<?php
-session_start();
-include('db_psicoterapia.php');
-
-
-if(isset($_POST['btn_appointment'])){
-
-    $doctor = $_POST['displaydoctor'];
-    $pickedDate = $_POST['datepick'];
-    $displaytime = $_POST['displaytime'];
-    $doc_id = $_POST['docid'];
-    $doc_email = $_POST['docemail'];
-
-    $find = "SELECT * FROM tbl_useraccount where userID='{$_SESSION['userID']}'";
-    $checking = mysqli_query($conn, $find);
-
-    if(mysqli_num_rows($checking) > 0){
-            $fetch_appointments = mysqli_fetch_assoc($checking);
-            $userSurname = $fetch_appointments['userSurname'];
-            $userGivenName = $fetch_appointments['userGivenName'];
-            $userBirthday = $fetch_appointments['userBirthday'];
-            $userImage = $fetch_appointments['userImage'];
-            $userContactNumber = $fetch_appointments['userContactNumber'];	
-            $userEmail = $fetch_appointments['userEmail'];	
-        
-            $userStatus = "pending";	
-
-            
-
-    $sqlinsertappoinments = "INSERT INTO tbl_appointments(lastname, firstname, birthday, picture, mobile, email,date, time, doctor, doc_id,concern,status,userID) VALUES ('$userSurname','$userGivenName','$userBirthday','$userImage','$userContactNumber','$userEmail','$pickedDate', '$displaytime', '$doc_email','$doc_id','headachess','$userStatus','{$_SESSION['userID']}')";
-    $data_admin = mysqli_query($conn, $sqlinsertappoinments);
-
-
-
-    $sqlSummary = "SELECT * FROM tbl_appointments WHERE userID='{$_SESSION['userID']}'";
-			$checkSummary = mysqli_query($conn,$sqlSummary);
-
-            
-                 $subject = "SCHEDULE";
-                $message = "Hi! $userSurname,$userGivenName \nYour Appointment for Doctor $sumDoctorsName \n\nSummary:\nContanct Number: $sumNumber\nDate: $pickedDate\nTime: $displaytime";
-                $sender = "From: psicoterapiainc@gmail.com";
-
-
-
-            if(mail($_SESSION['email'], $subject, $message, $sender)){
-                
-           
-		
-            if(mysqli_num_rows($checkSummary) > 0){
-                $fetch_summaryData = mysqli_fetch_assoc($checkSummary);
-				$sumUserName = $fetch_summaryData['email'];
-				$sumDoctorsName = $fetch_summaryData['lastname'];
-				$sumDate = $fetch_summaryData['date'];
-				$sumTime = $fetch_summaryData['time'];
-				$sumNumber = $fetch_summaryData['mobile'];
-
-	            $_SESSION['name'] = $sumUserName;
-				$_SESSION['DoctorsName'] = $doctor;
-				$_SESSION['date'] = $sumDate;
-				$_SESSION['time'] = $sumTime;
-				$_SESSION['appointmentNumber'] = $sumNumber;
-
-            }
-            header('location: userSummary.php');
-            exit();
-    }
-
-}else{
-// $error = "Failed to Reset!";
-// $_SESSION['error'] = $error;
-// header('location: userLogin.php');
-// exit();
-echo "x";
-}
-
-
-	}else{
-        echo "";
-    }
-
+<?php
+session_start();
+extract($_POST);
+include('db_psicoterapia.php');
+
+
+if(isset($_POST['btn_appointment'])){
+ // header('location: userSummary.php');
+//             exit();
+
+$checkappointment = mysqli_query($conn,"SELECT date as C1 FROM tbl_appts WHERE userID = '{$_SESSION['userID']}'");
+        if(mysqli_num_rows($checkappointment) > 0){
+         $hasnosamedate = TRUE;
+         for($i = 1; $i <= mysqli_num_rows($checkappointment); $i++){
+             // echo $i;
+             $date = mysqli_fetch_assoc($checkappointment);
+             $datecheck = $date['C1'];
+             if($datepick == $datecheck){
+                 $hasnosamedate = FALSE;
+                 break;
+             }
+         }
+         if($hasnosamedate == TRUE){
+             // echo $datepick;
+             $_SESSION['CopyOfdoctor'] = $docid;
+             $_SESSION['CopyOfdatepick'] = $datepick;
+             $_SESSION['CopyOfdisplaytime'] = $displaytime;
+             // echo $_SESSION['CopyOfdoctor'];
+             // echo $_SESSION['CopyOfdatepick'];
+             // echo $_SESSION['CopyOfdisplaytime'];
+             header('location:insertAppointment.php');
+             exit();
+
+         }else{
+             echo "<script>
+             alert('You already have an Appointment For this day, Please Check Your Email');
+             window.location.href='Appointment.php';
+             </script>";
+         }
+
+        }else{
+         // echo "///";
+         $_SESSION['CopyOfdoctor'] = $docid;
+         $_SESSION['CopyOfdatepick'] = $datepick;
+         $_SESSION['CopyOfdisplaytime'] = $displaytime;
+         // echo $_SESSION['CopyOfdoctor'];
+         //     echo $_SESSION['CopyOfdatepick'];
+         //     echo $_SESSION['CopyOfdisplaytime'];
+         header('location:insertAppointment.php');
+         exit();
+        }
+}
+$conn->close();
 ?>

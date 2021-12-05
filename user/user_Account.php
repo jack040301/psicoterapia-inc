@@ -560,7 +560,7 @@ input:focus {
 
  
 
-    $records = mysqli_query($conn,"SELECT * From tbl_appointments LEFT JOIN tbl_employee on tbl_appointments.doc_id = tbl_employee.id WHERE userID='{$_SESSION['userID']}' and  date >= '$time_now' ORDER BY date ASC"); 
+    $records = mysqli_query($conn,"SELECT * From tbl_appts LEFT JOIN tbl_employee on tbl_appts.docID = tbl_employee.id WHERE userID='{$_SESSION['userID']}' and  date >= '$time_now' ORDER BY date ASC"); 
 
    
 

@@ -153,24 +153,25 @@
       </div>
 
       <?php
-          $pick = date('m/d/Y', strtotime($txt));
+          $pick = date('Y-m-d', strtotime($txt));
           date_default_timezone_set(  'Asia/Singapore');
-          $date = date('m/d/Y');
+          $date = date('Y-m-d');
           $time = date('H:i A');
           // echo $time;
           // echo date('H:i A');
           // echo $pick;
-          session_start();
+          // session_start();
           include "db_psicoterapia.php";// Using database connection file here
           
 
           // Use select query here
-            $records = mysqli_query($conn, "SELECT * FROM tbl_doctors LEFT JOIN  tbl_doctorstime ON tbl_doctors.time_id = tbl_doctorstime.time_id WHERE ( '$pick' between start_date AND end_date)");
+            $records = mysqli_query($conn, "SELECT * FROM tbl_employee WHERE ( '$pick' between start_date AND end_date) AND position = 'doctor'");
               if($pick != $date){
                 while($data = mysqli_fetch_array($records)){
                  // $dbtime = date('H:i A', strtotime($data['time_description']));
                  //  if($time < $dbtime){
                      // echo $dbtime;
+
                     echo '<div class="row" style="margin-bottom: 10px; 
                           margin-right: 20px;
                           flex-flow: wrap;
@@ -180,20 +181,20 @@
                             padding: 15px;">';
                     echo'<div class="card-body">';
                     echo' <h5 class="card-title" name="title">Doctor</h5>';
-                    echo '<h4 class="text-info"> '.$data['doctors_name'].'</h4>';
-                    echo' <p " class="card-text">Profession: '.$data['doctors_profession'].'</p>';
-                    echo' <p class="card-text">Time: '.$data['time_description'].'</p>';
-                    echo'<a href="#"  data-bs-toggle="modal" data-bs-target="#exampleModal" class="modalButton btn btn-primary" data-name="'. $data['doctors_name'] .'" data-time="'.$data['time_description'].'">Schedule Appointment</a>';
+                    echo '<h4 class="text-info"> '.$data['lastname'].'</h4>';
+                    echo' <p " class="card-text">Email: '.$data['email'].'</p>';
+                    echo' <p class="card-text">Time: '.$data['time'].'</p>';
+                    echo'<a href="#"  data-bs-toggle="modal" data-bs-target="#exampleModal" class="modalButton btn btn-primary" data-name="'. $data['lastname'] .'" data-time="'.$data['time'].'" data-docid="'.$data['id'].'" data-email="'.$data['email'].'">Schedule Appointment</a>';
                     echo'</div></div>';
                     echo'</div>';
                   // }
                 }
               }else{
                 while($data = mysqli_fetch_array($records)){
-                 $dbtime = date('H:i A', strtotime($data['time_description']));
+                 $dbtime = date('H:i A', strtotime($data['time']));
                   if($time < $dbtime){
                      // echo $dbtime;
-                    echo '<div class="row" style="margin-bottom: 10px; 
+                     echo '<div class="row" style="margin-bottom: 10px; 
                           margin-right: 20px;
                           flex-flow: wrap;
                     display: inline-block;
@@ -202,10 +203,10 @@
                             padding: 15px;">';
                     echo'<div class="card-body">';
                     echo' <h5 class="card-title" name="title">Doctor</h5>';
-                    echo '<h4 class="text-info"> '.$data['doctors_name'].'</h4>';
-                    echo' <p " class="card-text">Profession: '.$data['doctors_profession'].'</p>';
-                    echo' <p class="card-text">Time: '.$data['time_description'].'</p>';
-                    echo'<a href="#"  data-bs-toggle="modal" data-bs-target="#exampleModal" class="modalButton btn btn-primary" data-name="'. $data['doctors_name'] .'" data-time="'.$data['time_description'].'">Schedule Appointment</a>';
+                    echo '<h4 class="text-info"> '.$data['lastname'].'</h4>';
+                    echo' <p " class="card-text">Email: '.$data['email'].'</p>';
+                    echo' <p class="card-text">Time: '.$data['time'].'</p>';
+                    echo'<a href="#"  data-bs-toggle="modal" data-bs-target="#exampleModal" class="modalButton btn btn-primary" data-name="'. $data['lastname'] .'" data-time="'.$data['time'].'" data-docid="'.$data['id'].'" data-email="'.$data['email'].'">Schedule Appointment</a>';
                     echo'</div></div>';
                     echo'</div>';
                   }
@@ -243,7 +244,7 @@
 
             <!-- <input type="date" id="datepick" name=""> -->
 
-            <input type="text" id="datepick" readonly="readonly" name="datepick"  value = "<?= $pick ?>" style="padding-left: 25px;">
+            <input type="text" id="datepick" readonly="readonly" name="datepick"  value = "<?= $pick ?>" style="padding-left: 10px;">
 
             <label id="selDate">Doctor</label>
 
@@ -332,8 +333,6 @@ $('.modal').find('#doctors').val(name);
 $('.modal').find('#mod').val(time);
 
 $('.modal').find('#docemail').val(doc_email);
-
-
 
 $('.modal').find('#docid').val(docid);
 
