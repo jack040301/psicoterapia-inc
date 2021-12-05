@@ -123,7 +123,7 @@
                         <input style="font-size:8pt; padding:10px;" name="lastname" type="text" ondrop="return false;" onpaste="return false;" class="form-control" placeholder="Lastname" required="Required">
 
                         <label style="margin-top:20px; font-size:9pt;" class="FormLabel form-label"><i class='bx bx-cake'></i> Birthday</label>
-                        <input style="font-size:8pt; padding:10px;" name="birthday" type="date" ondrop="return false;" onpaste="return false;" class="form-control" required="Required">
+                        <input style="font-size:8pt; padding:10px;" name="birthday" type="date" max="<?php echo $lastYear = date("Y-m-d", strtotime("-18 years")); ?>" ondrop="return false;" onpaste="return false;" class="form-control" required="Required">
 
                         <label style="margin-top:20px; font-size:9pt;" class="FormLabel form-label"><i class='bx bxs-phone'></i> Contact Number</label>
                         <input style="font-size:8pt; padding-left:50px; padding-top:10px; padding-bottom:10px;" name="contact" type="tel" id="contact" ondrop="return false;" onpaste="return false;" class="form-control" maxlength="11" onkeypress="return isNumberKey(event)" size="100%" required="Required"><br>
