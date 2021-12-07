@@ -127,7 +127,7 @@
                             $get_data_query = "SELECT * FROM tbl_useraccount as t1 left join tbl_appts as t2 on t1.userID = t2.userID left join tbl_employee as t3 on t3.id = t2.docID WHERE date < date(now()) ORDER BY id DESC LIMIT $offset, $total_records_per_page";
                             $get_data = mysqli_query($connect, $get_data_query);
                             for($i=0; $row = mysqli_fetch_array($get_data); $i++){
-                                $doctor = $row['doctor'];
+                                $doctor = $row['email'];
                                 $see_doctor_query = "SELECT * FROM tbl_employee WHERE email = '$doctor'";
                                 $see_doctor = mysqli_query($connect, $see_doctor_query);
                                 $fetch_see_doctor = mysqli_fetch_assoc($see_doctor);

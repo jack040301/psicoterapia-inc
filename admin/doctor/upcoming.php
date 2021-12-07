@@ -118,7 +118,7 @@
 
                             $get_data = mysqli_query($connect, $get_data_query);
                             for($i=0; $row = mysqli_fetch_array($get_data); $i++){
-                                $doctor = $row['doctor'];
+                                $doctor = $row['email'];
                                 $see_doctor_query = "SELECT * FROM tbl_employee WHERE email = '$doctor'";
                                 $see_doctor = mysqli_query($connect, $see_doctor_query);
                                 $fetch_see_doctor = mysqli_fetch_assoc($see_doctor);
