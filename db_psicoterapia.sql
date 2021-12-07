@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2021 at 05:06 PM
+-- Generation Time: Dec 07, 2021 at 01:11 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -58,9 +58,9 @@ CREATE TABLE `tbl_appts` (
   `apptID` text NOT NULL,
   `userID` text NOT NULL,
   `docID` text NOT NULL,
-  `date` text NOT NULL,
-  `time` text NOT NULL,
-  `status` varchar(255) NOT NULL,
+  `date` date NOT NULL,
+  `time` time NOT NULL,
+  `status` varchar(255) NOT NULL DEFAULT 'pending',
   `apptDateCreated` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -69,8 +69,8 @@ CREATE TABLE `tbl_appts` (
 --
 
 INSERT INTO `tbl_appts` (`apptID`, `userID`, `docID`, `date`, `time`, `status`, `apptDateCreated`) VALUES
-('1', '3', '1', '2021-12-06', '13:00:00', 'default', '12-05-2021'),
-('2', '3', '2', '2021-12-08', '14:00:00', 'default', '12-05-2021');
+('1', '3', '1', '2021-12-06', '13:00:00', 'expired', '12-05-2021'),
+('2', '3', '2', '2021-12-08', '14:00:00', 'pending', '12-05-2021');
 
 -- --------------------------------------------------------
 
