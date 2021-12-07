@@ -3,7 +3,7 @@
     // global variables
     $servername = 'localhost';
     $username = 'root';
-    $password = '';
+    $password = 'Private@1998';
     $database = 'db_psicoterapia';
 
     // establish connection
