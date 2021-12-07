@@ -101,7 +101,7 @@
 	                        $next_page = $page_no + 1;
 	                        $adjacents = "2";
 
-	                        $result_count = mysqli_query($connect,"SELECT COUNT(*) As total_records FROM tbl_appts LEFT JOIN tbl_employee on (tbl_appts.docID = tbl_employee.id) where (date = date(now()) AND email = '$email' AND tbl_appts.status = 'pending'");
+	                        $result_count = mysqli_query($connect,"SELECT COUNT(*) As total_records FROM tbl_appts LEFT JOIN tbl_employee on tbl_appts.docID = tbl_employee.id where (date = date(now())) AND tbl_employee.email = '$email' AND tbl_appts.status = 'pending';");
                             // SELECT COUNT(*) As total_records FROM tbl_appts LEFT JOIN tbl_employee on (tbl_appts.docID = tbl_employee.id) where (date = date(now()) AND email = 'august@gmail.com') AND tbl_appts.status = 'pending';
 	                        $total_records = mysqli_fetch_array($result_count);
 	                        $total_records = $total_records['total_records'];
@@ -110,7 +110,7 @@
 	                        $second_last = $total_no_of_pages - 1;
 
                             // $get_data_query = "SELECT *, DATEDIFF(date(now()), birthday)/365.25 as age FROM tbl_useraccount as t1 left join tbl_appts as t2 on t1.userID = t2.userID left join tbl_employee as t3 on t3.docID = t2.id WHERE date = date(now()) AND doctor = '$email' AND t2.status = 'pending' ORDER BY time ASC LIMIT $offset, $total_records_per_page";
-                            $get_data_query = "SELECT * FROM tbl_useraccount as t1 left join tbl_appts as t2 on t1.userID = t2.userID left join tbl_employee as t3 on t3.id = t2.docID WHERE date = date(now()) AND email = '$email' AND t2.status = 'pending' ORDER BY time ASC LIMIT $offset, $total_records_per_page";
+                            $get_data_query = "SELECT * FROM tbl_appts LEFT JOIN tbl_employee on tbl_appts.docID = tbl_employee.id where (date = date(now())) AND tbl_employee.email = '$email' AND tbl_appts.status = 'pending' ORDER BY time ASC LIMIT $offset, $total_records_per_page";
                             
                             $get_data = mysqli_query($connect, $get_data_query);
                             for($i=0; $row = mysqli_fetch_array($get_data); $i++){
