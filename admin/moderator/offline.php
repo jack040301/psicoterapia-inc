@@ -123,11 +123,11 @@
                             $total_no_of_pages = ceil($total_records / $total_records_per_page);
 	                        $second_last = $total_no_of_pages - 1;
 
-                            $get_data_query = "SELECT *, DATEDIFF(date(now()), userBirthday)/365.25 as age FROM tbl_useraccount WHERE userStatus = 'notverified' ORDER BY userID ASC LIMIT $offset, $total_records_per_page";
+                            $get_data_query = "SELECT *  FROM tbl_useraccount WHERE userStatus = 'notverified' ORDER BY userID ASC LIMIT $offset, $total_records_per_page";
                             $get_data = mysqli_query($connect, $get_data_query);
                             for($i=0; $row = mysqli_fetch_array($get_data); $i++){
                         ?>
-                            <tr style="border-bottom:2px solid whitesmoke;"><td><?php echo $row['userID']; ?></td><td><?php echo ucwords($row['userSurname']); ?></td><td><?php echo ucwords($row['userGivenName']); ?></td><td><?php echo $row['userEmail']; ?></td><td><?php echo number_format($row['age']); ?></td><td><?php echo $row['userAddress']; ?></td></tr>
+                            <tr style="border-bottom:2px solid whitesmoke;"><td><?php echo $row['userID']; ?></td><td><?php echo ucwords($row['userSurname']); ?></td><td><?php echo ucwords($row['userGivenName']); ?></td><td><?php echo $row['userEmail']; ?></td><td><?php echo number_format($row['userAge']); ?></td><td><?php echo $row['userAddress']; ?></td></tr>
                         <?php } ?>
                     </tbody>
                 </table>
