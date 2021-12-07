@@ -1101,7 +1101,7 @@
             $fetch_update = mysqli_fetch_assoc($check_urcode);
             $fetch_tempomail = $fetch_update['tempomail'];
             $fetch_id = $fetch_update['id'];
-            $update_doctor_query = "UPDATE tbl_appointments SET doctor = '$fetch_tempomail' WHERE doc_id = $fetch_id";
+            $update_doctor_query = "UPDATE tbl_appts LEFT JOIN tbl_employee ON tbl_appts.userID = tbl_useraccount.userID SET email = '$fetch_tempomail' WHERE docID = $fetch_id";
             $update_doctor = mysqli_query($connect, $update_doctor_query);
             $update_query = "UPDATE tbl_employee SET code = 0, email = '$fetch_tempomail' WHERE email = '$myemail'";
             $update = mysqli_query($connect, $update_query);

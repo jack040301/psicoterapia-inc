@@ -117,14 +117,14 @@
 	                        $next_page = $page_no + 1;
 	                        $adjacents = "2";
 
-	                        $result_count = mysqli_query($connect,"SELECT COUNT(*) As total_records FROM tbl_appointments where date < date(now())");
+	                        $result_count = mysqli_query($connect,"SELECT COUNT(*) As total_records FROM tbl_appts where date < date(now())");
 	                        $total_records = mysqli_fetch_array($result_count);
 	                        $total_records = $total_records['total_records'];
 
                             $total_no_of_pages = ceil($total_records / $total_records_per_page);
 	                        $second_last = $total_no_of_pages - 1;
 
-                            $get_data_query = "SELECT *, DATEDIFF(date(now()), birthday)/365.25 as age FROM tbl_appointments WHERE date < date(now()) ORDER BY id DESC LIMIT $offset, $total_records_per_page";
+                            $get_data_query = "SELECT * FROM tbl_useraccount as t1 left join tbl_appts as t2 on t1.userID = t2.userID left join tbl_employee as t3 on t3.id = t2.docID WHERE date < date(now()) ORDER BY id DESC LIMIT $offset, $total_records_per_page";
                             $get_data = mysqli_query($connect, $get_data_query);
                             for($i=0; $row = mysqli_fetch_array($get_data); $i++){
                                 $doctor = $row['doctor'];
