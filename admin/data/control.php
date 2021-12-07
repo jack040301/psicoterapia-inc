@@ -106,42 +106,42 @@
 
     // total yesterday appointment for doctors
     $total_yesterday_appointments = 0;
-    $yesterday_appointment_querys = "SELECT COUNT(status) as total_appointment FROM tbl_appts left join tbl_employee on tbl_appts.docID = tbl_employee.id WHERE date = date(now())-1 AND email = '$doc_email'";
+    $yesterday_appointment_querys = "SELECT COUNT(tbl_appts.status) as total_appointment FROM tbl_appts left join tbl_employee on tbl_appts.docID = tbl_employee.id WHERE tbl_appts.date = date(now())-1 AND email = '$doc_email'";
     $yesterday_appointments = mysqli_query($connect, $yesterday_appointment_querys);
     $fetch_yesterday_appointments = mysqli_fetch_assoc($yesterday_appointments);
     $total_yesterday_appointments = $fetch_yesterday_appointments['total_appointment'];
 
     // total yesterday success appointment for doctors
     $total_yesterday_success_appointments = 0;
-    $yesterday_success_appointment_querys = "SELECT COUNT(status) as total_success FROM tbl_appts left join tbl_employee on tbl_appts.docID = tbl_employee.id WHERE tbl_appts.status = 'done' AND date = date(now())-1 AND email = '$doc_email'";
+    $yesterday_success_appointment_querys = "SELECT COUNT(tbl_appts.status) as total_success FROM tbl_appts left join tbl_employee on tbl_appts.docID = tbl_employee.id WHERE tbl_appts.status = 'done' AND tbl_appts.date = date(now())-1 AND email = '$doc_email'";
     $yesterday_success_appointments = mysqli_query($connect, $yesterday_success_appointment_querys);
     $fetch_yesterday_success_appointments = mysqli_fetch_assoc($yesterday_success_appointments);
     $total_yesterday_success_appointments = $fetch_yesterday_success_appointments['total_success'];
 
     // total yesterday cancelled appointment for doctors
     $total_yesterday_cancelled_appointments = 0;
-    $yesterday_cancelled_appointment_querys = "SELECT COUNT(status) as total_cancelled FROM tbl_appts left join tbl_employee on tbl_appts.docID = tbl_employee.id WHERE tbl_appts.status = 'cancelled' AND date = date(now())-1 AND email = '$doc_email'";
+    $yesterday_cancelled_appointment_querys = "SELECT COUNT(tbl_appts.status) as total_cancelled FROM tbl_appts left join tbl_employee on tbl_appts.docID = tbl_employee.id WHERE tbl_appts.status = 'cancelled' AND tbl_appts.date = date(now())-1 AND email = '$doc_email'";
     $yesterday_cancelled_appointments = mysqli_query($connect, $yesterday_cancelled_appointment_querys);
     $fetch_yesterday_cancelled_appointments = mysqli_fetch_assoc($yesterday_cancelled_appointments);
     $total_yesterday_cancelled_appointments = $fetch_yesterday_cancelled_appointments['total_cancelled'];
 
     // total yesterday expired appointment
     $total_yesterday_expired_appointments = 0;
-    $yesterday_expired_appointment_querys = "SELECT COUNT(status) as total_expired FROM tbl_appts left join tbl_employee on tbl_appts.docID = tbl_employee.id WHERE tbl_appts.status = 'expired' AND date = date(now())-1 AND email = '$doc_email'";
+    $yesterday_expired_appointment_querys = "SELECT COUNT(tbl_appts.status) as total_expired FROM tbl_appts left join tbl_employee on tbl_appts.docID = tbl_employee.id WHERE tbl_appts.status = 'expired' AND tbl_appts.date = date(now())-1 AND email = '$doc_email'";
     $yesterday_expired_appointments = mysqli_query($connect, $yesterday_expired_appointment_querys);
     $fetch_yesterday_expired_appointments = mysqli_fetch_assoc($yesterday_expired_appointments);
     $total_yesterday_expired_appointments = $fetch_yesterday_expired_appointments['total_expired'];
 
     // total success appointment
     $total_success_appointments = 0;
-    $success_appointment_querys = "SELECT COUNT(status) as total_success FROM tbl_appts left join tbl_employee on tbl_appts.docID = tbl_employee.id WHERE tbl_appts.status = 'done' AND email = '$doc_email'";
+    $success_appointment_querys = "SELECT COUNT(tbl_appts.status) as total_success FROM tbl_appts left join tbl_employee on tbl_appts.docID = tbl_employee.id WHERE tbl_appts.status = 'done' AND email = '$doc_email'";
     $success_appointments = mysqli_query($connect, $success_appointment_querys);
     $fetch_success_appointments = mysqli_fetch_assoc($success_appointments);
     $total_success_appointments = $fetch_success_appointments['total_success'];
 
     // total cancelled appointment
     $total_cancelled_appointments = 0;
-    $cancelled_appointment_querys = "SELECT COUNT(status) as total_cancelled FROM tbl_appts left join tbl_employee on tbl_appts.docID = tbl_employee.id WHERE tbl_appts.status = 'cancelled' AND email = '$doc_email'";
+    $cancelled_appointment_querys = "SELECT COUNT(tbl_appts.status) as total_cancelled FROM tbl_appts left join tbl_employee on tbl_appts.docID = tbl_employee.id WHERE tbl_appts.status = 'cancelled' AND email = '$doc_email'";
     $cancelled_appointments = mysqli_query($connect, $cancelled_appointment_querys);
     $fetch_cancelled_appointments = mysqli_fetch_assoc($cancelled_appointments);
     $total_cancelled_appointments = $fetch_cancelled_appointments['total_cancelled'];
@@ -149,14 +149,14 @@
 
     // total expired appointment
     $total_expired_appointments = 0;
-    $expired_appointment_querys = "SELECT COUNT(status) as total_expired FROM tbl_appts left join tbl_employee on tbl_appts.docID = tbl_employee.id WHERE tbl_appts.status = 'expired' AND email = '$doc_email'";
+    $expired_appointment_querys = "SELECT COUNT(tbl_appts.status) as total_expired FROM tbl_appts left join tbl_employee on tbl_appts.docID = tbl_employee.id WHERE tbl_appts.status = 'expired' AND email = '$doc_email'";
     $expired_appointments = mysqli_query($connect, $expired_appointment_querys);
     $fetch_expired_appointments = mysqli_fetch_assoc($expired_appointments);
     $total_expired_appointments = $fetch_expired_appointments['total_expired'];
 
     // total appointment
     $total_appointments = 0;
-    $appointment_querys = "SELECT COUNT(status) as total_appointment FROM tbl_appts left join tbl_employee on tbl_appts.docID = tbl_employee.id WHERE email = '$doc_email' AND tbl_appts.status != 'pending'";
+    $appointment_querys = "SELECT COUNT(tbl_appts.status) as total_appointment FROM tbl_appts left join tbl_employee on tbl_appts.docID = tbl_employee.id WHERE email = '$doc_email' AND tbl_appts.status != 'pending'";
     $appointments = mysqli_query($connect, $appointment_querys);
     $fetch_appointments = mysqli_fetch_assoc($appointments);
     $total_appointments = $fetch_appointments['total_appointment'];
