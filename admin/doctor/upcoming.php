@@ -102,14 +102,20 @@
 	                        $next_page = $page_no + 1;
 	                        $adjacents = "2";
 
-	                        $result_count = mysqli_query($connect,"SELECT COUNT(*) As total_records FROM tbl_appointments where date > date(now()) AND doctor = '$email'");
+	                        // $result_count = mysqli_query($connect,"SELECT COUNT(*) As total_records FROM tbl_appointments where date > date(now()) AND doctor = '$email'");
+
+                            $result_count = mysqli_query($connect,"SELECT COUNT(*) As total_records FROM tbl_appts LEFT JOIN tbl_employee on (tbl_appts.docID = tbl_employee.id) where date > date(now()) AND email = '$email'");
+
 	                        $total_records = mysqli_fetch_array($result_count);
 	                        $total_records = $total_records['total_records'];
 
                             $total_no_of_pages = ceil($total_records / $total_records_per_page);
 	                        $second_last = $total_no_of_pages - 1;
 
-                            $get_data_query = "SELECT *, DATEDIFF(date(now()), birthday)/365.25 as age FROM tbl_appointments WHERE date > date(now()) AND doctor = '$email' ORDER BY id ASC LIMIT $offset, $total_records_per_page";
+                            // $get_data_query = "SELECT *, DATEDIFF(date(now()), birthday)/365.25 as age FROM tbl_appointments WHERE date > date(now()) AND doctor = '$email' ORDER BY id ASC LIMIT $offset, $total_records_per_page";
+
+                            $get_data_query = "SELECT * FROM tbl_useraccount as t1 left join tbl_appts as t2 on t1.userID = t2.userID left join tbl_employee as t3 on t3.id = t2.docID WHERE date > date(now()) AND email = '$email' ORDER BY id ASC LIMIT $offset, $total_records_per_page";
+
                             $get_data = mysqli_query($connect, $get_data_query);
                             for($i=0; $row = mysqli_fetch_array($get_data); $i++){
                                 $doctor = $row['doctor'];
@@ -117,7 +123,7 @@
                                 $see_doctor = mysqli_query($connect, $see_doctor_query);
                                 $fetch_see_doctor = mysqli_fetch_assoc($see_doctor);
                         ?>
-                            <tr style="border-bottom:2px solid whitesmoke;"><td><?php echo $row['id']; ?></td><td><?php echo $row['date']; ?></td><td><?php echo $row['time']; ?></td><td><?php echo ucwords($row['lastname']); ?></td><td><?php echo ucwords($row['firstname']); ?></td><td><?php echo number_format($row['age']); ?></td><td><?php echo $row['mobile']; ?></td><td><?php echo ucwords($row['status']); ?></td></tr>
+                            <tr style="border-bottom:2px solid whitesmoke;"><td><?php echo $row['id']; ?></td><td><?php echo $row['date']; ?></td><td><?php echo $row['time']; ?></td><td><?php echo ucwords($row['lastname']); ?></td><td><?php echo ucwords($row['firstname']); ?></td><td><?php echo number_format($row['userAge']); ?></td><td><?php echo $row['mobile']; ?></td><td><?php echo ucwords($row['status']); ?></td></tr>
                         <?php } ?>
                     </tbody>
                 </table>

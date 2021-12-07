@@ -15,7 +15,7 @@
     
 
     // daily appointments
-    $daily_appointment_query = "SELECT date, count(*) as daily_appointment from tbl_appointments WHERE date <= date(now()) GROUP BY date ORDER BY date ASC";
+    $daily_appointment_query = "SELECT date, count(*) as daily_appointment from tbl_appts WHERE date <= date(now()) GROUP BY date ORDER BY date ASC";
     $daily_appointment = mysqli_query($connect, $daily_appointment_query);
     for($i=0; $row = mysqli_fetch_array($daily_appointment); $i++){
         $daily_value[] = $row['daily_appointment'];
@@ -28,61 +28,61 @@
     $fetch_company_details = mysqli_fetch_assoc($company_details);
     
     // set yesterday pending status to expired
-    $expired_status_query = "UPDATE tbl_appointments SET status = 'expired' WHERE date < date(now()) AND status = 'pending'";
+    $expired_status_query = "UPDATE tbl_appts SET status = 'expired' WHERE date < date(now()) AND status = 'pending'";
     $expired_status = mysqli_query($connect, $expired_status_query);
 
     // total yesterday appointment
     $total_yesterday_appointment = 0;
-    $yesterday_appointment_query = "SELECT COUNT(status) as total_appointment FROM tbl_appointments WHERE date = date(now())-1";
+    $yesterday_appointment_query = "SELECT COUNT(status) as total_appointment FROM tbl_appts WHERE date = date(now())-1";
     $yesterday_appointment = mysqli_query($connect, $yesterday_appointment_query);
     $fetch_yesterday_appointment = mysqli_fetch_assoc($yesterday_appointment);
     $total_yesterday_appointment = $fetch_yesterday_appointment['total_appointment'];
 
     // total yesterday success appointment
     $total_yesterday_success_appointment = 0;
-    $yesterday_success_appointment_query = "SELECT COUNT(status) as total_success FROM tbl_appointments WHERE status = 'done' AND date = date(now())-1";
+    $yesterday_success_appointment_query = "SELECT COUNT(status) as total_success FROM tbl_appts WHERE status = 'done' AND date = date(now())-1";
     $yesterday_success_appointment = mysqli_query($connect, $yesterday_success_appointment_query);
     $fetch_yesterday_success_appointment = mysqli_fetch_assoc($yesterday_success_appointment);
     $total_yesterday_success_appointment = $fetch_yesterday_success_appointment['total_success'];
 
     // total yesterday cancelled appointment
     $total_yesterday_cancelled_appointment = 0;
-    $yesterday_cancelled_appointment_query = "SELECT COUNT(status) as total_cancelled FROM tbl_appointments WHERE status = 'cancelled' AND date = date(now())-1";
+    $yesterday_cancelled_appointment_query = "SELECT COUNT(status) as total_cancelled FROM tbl_appts WHERE status = 'cancelled' AND date = date(now())-1";
     $yesterday_cancelled_appointment = mysqli_query($connect, $yesterday_cancelled_appointment_query);
     $fetch_yesterday_cancelled_appointment = mysqli_fetch_assoc($yesterday_cancelled_appointment);
     $total_yesterday_cancelled_appointment = $fetch_yesterday_cancelled_appointment['total_cancelled'];
 
     // total yesterday expired appointment
     $total_yesterday_expired_appointment = 0;
-    $yesterday_expired_appointment_query = "SELECT COUNT(status) as total_expired FROM tbl_appointments WHERE status = 'expired' AND date = date(now())-1";
+    $yesterday_expired_appointment_query = "SELECT COUNT(status) as total_expired FROM tbl_appts WHERE status = 'expired' AND date = date(now())-1";
     $yesterday_expired_appointment = mysqli_query($connect, $yesterday_expired_appointment_query);
     $fetch_yesterday_expired_appointment = mysqli_fetch_assoc($yesterday_expired_appointment);
     $total_yesterday_expired_appointment = $fetch_yesterday_expired_appointment['total_expired'];
 
     // total appointment
     $total_appointment = 0;
-    $appointment_query = "SELECT COUNT(status) as total_appointment FROM tbl_appointments WHERE status != 'pending'";
+    $appointment_query = "SELECT COUNT(status) as total_appointment FROM tbl_appts WHERE status != 'pending'";
     $appointment = mysqli_query($connect, $appointment_query);
     $fetch_appointment = mysqli_fetch_assoc($appointment);
     $total_appointment = $fetch_appointment['total_appointment'];
 
     // total success appointment
     $total_success_appointment = 0;
-    $success_appointment_query = "SELECT COUNT(status) as total_success FROM tbl_appointments WHERE status = 'done'";
+    $success_appointment_query = "SELECT COUNT(status) as total_success FROM tbl_appts WHERE status = 'done'";
     $success_appointment = mysqli_query($connect, $success_appointment_query);
     $fetch_success_appointment = mysqli_fetch_assoc($success_appointment);
     $total_success_appointment = $fetch_success_appointment['total_success'];
 
     // total cancelled appointment
     $total_cancelled_appointment = 0;
-    $cancelled_appointment_query = "SELECT COUNT(status) as total_cancelled FROM tbl_appointments WHERE status = 'cancelled'";
+    $cancelled_appointment_query = "SELECT COUNT(status) as total_cancelled FROM tbl_appts WHERE status = 'cancelled'";
     $cancelled_appointment = mysqli_query($connect, $cancelled_appointment_query);
     $fetch_cancelled_appointment = mysqli_fetch_assoc($cancelled_appointment);
     $total_cancelled_appointment = $fetch_cancelled_appointment['total_cancelled'];
 
     // total expired appointment
     $total_expired_appointment = 0;
-    $expired_appointment_query = "SELECT COUNT(status) as total_expired FROM tbl_appointments WHERE status = 'expired'";
+    $expired_appointment_query = "SELECT COUNT(status) as total_expired FROM tbl_appts WHERE status = 'expired'";
     $expired_appointment = mysqli_query($connect, $expired_appointment_query);
     $fetch_expired_appointment = mysqli_fetch_assoc($expired_appointment);
     $total_expired_appointment = $fetch_expired_appointment['total_expired'];
@@ -97,7 +97,7 @@
     $doc_email = $_SESSION['doctor'];
 
     // daily appointments of doctors
-    $daily_appointment_querys = "SELECT date, count(*) as daily_appointment from tbl_appointments WHERE date <= date(now()) AND doctor = '$doc_email' GROUP BY date ORDER BY date ASC";
+    $daily_appointment_querys = "SELECT date, count(*) as daily_appointment from tbl_appts left join tbl_employee on tbl_appts.docID = tbl_employee.id WHERE date <= date(now()) AND email = '$doc_email' GROUP BY date ORDER BY date ASC";
     $daily_appointments = mysqli_query($connect, $daily_appointment_querys);
     for($i=0; $row = mysqli_fetch_array($daily_appointments); $i++){
         $daily_values[] = $row['daily_appointment'];
@@ -106,42 +106,42 @@
 
     // total yesterday appointment for doctors
     $total_yesterday_appointments = 0;
-    $yesterday_appointment_querys = "SELECT COUNT(status) as total_appointment FROM tbl_appointments WHERE date = date(now())-1 AND doctor = '$doc_email'";
+    $yesterday_appointment_querys = "SELECT COUNT(status) as total_appointment FROM tbl_appts left join tbl_employee on tbl_appts.docID = tbl_employee.id WHERE date = date(now())-1 AND email = '$doc_email'";
     $yesterday_appointments = mysqli_query($connect, $yesterday_appointment_querys);
     $fetch_yesterday_appointments = mysqli_fetch_assoc($yesterday_appointments);
     $total_yesterday_appointments = $fetch_yesterday_appointments['total_appointment'];
 
     // total yesterday success appointment for doctors
     $total_yesterday_success_appointments = 0;
-    $yesterday_success_appointment_querys = "SELECT COUNT(status) as total_success FROM tbl_appointments WHERE status = 'done' AND date = date(now())-1 AND doctor = '$doc_email'";
+    $yesterday_success_appointment_querys = "SELECT COUNT(status) as total_success FROM tbl_appts left join tbl_employee on tbl_appts.docID = tbl_employee.id WHERE tbl_appts.status = 'done' AND date = date(now())-1 AND email = '$doc_email'";
     $yesterday_success_appointments = mysqli_query($connect, $yesterday_success_appointment_querys);
     $fetch_yesterday_success_appointments = mysqli_fetch_assoc($yesterday_success_appointments);
     $total_yesterday_success_appointments = $fetch_yesterday_success_appointments['total_success'];
 
     // total yesterday cancelled appointment for doctors
     $total_yesterday_cancelled_appointments = 0;
-    $yesterday_cancelled_appointment_querys = "SELECT COUNT(status) as total_cancelled FROM tbl_appointments WHERE status = 'cancelled' AND date = date(now())-1 AND doctor = '$doc_email'";
+    $yesterday_cancelled_appointment_querys = "SELECT COUNT(status) as total_cancelled FROM tbl_appts left join tbl_employee on tbl_appts.docID = tbl_employee.id WHERE tbl_appts.status = 'cancelled' AND date = date(now())-1 AND email = '$doc_email'";
     $yesterday_cancelled_appointments = mysqli_query($connect, $yesterday_cancelled_appointment_querys);
     $fetch_yesterday_cancelled_appointments = mysqli_fetch_assoc($yesterday_cancelled_appointments);
     $total_yesterday_cancelled_appointments = $fetch_yesterday_cancelled_appointments['total_cancelled'];
 
     // total yesterday expired appointment
     $total_yesterday_expired_appointments = 0;
-    $yesterday_expired_appointment_querys = "SELECT COUNT(status) as total_expired FROM tbl_appointments WHERE status = 'expired' AND date = date(now())-1 AND doctor = '$doc_email'";
+    $yesterday_expired_appointment_querys = "SELECT COUNT(status) as total_expired FROM tbl_appts left join tbl_employee on tbl_appts.docID = tbl_employee.id WHERE tbl_appts.status = 'expired' AND date = date(now())-1 AND email = '$doc_email'";
     $yesterday_expired_appointments = mysqli_query($connect, $yesterday_expired_appointment_querys);
     $fetch_yesterday_expired_appointments = mysqli_fetch_assoc($yesterday_expired_appointments);
     $total_yesterday_expired_appointments = $fetch_yesterday_expired_appointments['total_expired'];
 
     // total success appointment
     $total_success_appointments = 0;
-    $success_appointment_querys = "SELECT COUNT(status) as total_success FROM tbl_appointments WHERE status = 'done' AND doctor = '$doc_email'";
+    $success_appointment_querys = "SELECT COUNT(status) as total_success FROM tbl_appts left join tbl_employee on tbl_appts.docID = tbl_employee.id WHERE tbl_appts.status = 'done' AND email = '$doc_email'";
     $success_appointments = mysqli_query($connect, $success_appointment_querys);
     $fetch_success_appointments = mysqli_fetch_assoc($success_appointments);
     $total_success_appointments = $fetch_success_appointments['total_success'];
 
     // total cancelled appointment
     $total_cancelled_appointments = 0;
-    $cancelled_appointment_querys = "SELECT COUNT(status) as total_cancelled FROM tbl_appointments WHERE status = 'cancelled' AND doctor = '$doc_email'";
+    $cancelled_appointment_querys = "SELECT COUNT(status) as total_cancelled FROM tbl_appts left join tbl_employee on tbl_appts.docID = tbl_employee.id WHERE tbl_appts.status = 'cancelled' AND email = '$doc_email'";
     $cancelled_appointments = mysqli_query($connect, $cancelled_appointment_querys);
     $fetch_cancelled_appointments = mysqli_fetch_assoc($cancelled_appointments);
     $total_cancelled_appointments = $fetch_cancelled_appointments['total_cancelled'];
@@ -149,14 +149,14 @@
 
     // total expired appointment
     $total_expired_appointments = 0;
-    $expired_appointment_querys = "SELECT COUNT(status) as total_expired FROM tbl_appointments WHERE status = 'expired' AND doctor = '$doc_email'";
+    $expired_appointment_querys = "SELECT COUNT(status) as total_expired FROM tbl_appts left join tbl_employee on tbl_appts.docID = tbl_employee.id WHERE tbl_appts.status = 'expired' AND email = '$doc_email'";
     $expired_appointments = mysqli_query($connect, $expired_appointment_querys);
     $fetch_expired_appointments = mysqli_fetch_assoc($expired_appointments);
     $total_expired_appointments = $fetch_expired_appointments['total_expired'];
 
     // total appointment
     $total_appointments = 0;
-    $appointment_querys = "SELECT COUNT(status) as total_appointment FROM tbl_appointments WHERE doctor = '$doc_email' AND status != 'pending'";
+    $appointment_querys = "SELECT COUNT(status) as total_appointment FROM tbl_appts left join tbl_employee on tbl_appts.docID = tbl_employee.id WHERE email = '$doc_email' AND tbl_appts.status != 'pending'";
     $appointments = mysqli_query($connect, $appointment_querys);
     $fetch_appointments = mysqli_fetch_assoc($appointments);
     $total_appointments = $fetch_appointments['total_appointment'];
@@ -821,7 +821,7 @@
         $password = "Admin";
         $code = 0;
         $status = "online";
-	$position = 'doctor';
+    $position = 'doctor';
 
         $check_email_query = "SELECT * FROM tbl_employee WHERE email = '$email'";
         $check_email = mysqli_query($connect, $check_email_query);

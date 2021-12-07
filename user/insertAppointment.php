@@ -23,7 +23,7 @@ include('db_psicoterapia.php');
 	}
 	// echo $maxnum;
 
-	$status = "default";
+	$status = "pending";
 	$today = date("m-d-Y");
 
 	// echo $maxnum ." ". $_SESSION['userID'] ." ". $_SESSION['CopyOfdoctor'] ." ". $_SESSION['CopyOfdatepick'] ." ". $_SESSION['CopyOfdisplaytime'];
