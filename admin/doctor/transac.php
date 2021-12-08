@@ -96,10 +96,10 @@
                             $fetch_client_info = mysqli_fetch_assoc($client_info);
                         }
                     ?>
-                    <img class="img-fluid" src="../../user/uploads/<?=$fetch_client_info['picture']?>"/>
+                    <img class="img-fluid" src="../../user/uploads/<?=$fetch_client_info['userImage']?>"/>
                 </div>
                 <div class="col-md-8">
-                <div class="col-md-9" style="padding-top:0px;"><div style="font-size:10pt; width:500px; margin:auto; border-radius:10px; box-shadow:rgba(99, 99, 99, 0.2)0px 2px 8px 0px; padding:20px;"><h6 style="color:#5065AF;">Customers Information</h6><p>Fullname: <?php echo ucwords($fetch_client_info['lastname'])?>, <?php echo ucwords($fetch_client_info['firstname'])?><br>Birthday: <?php echo ucwords($fetch_client_info['birthday'])?><br>Mobile Number: <?php echo ucwords($fetch_client_info['mobile'])?><br>Email Address: <?php echo ucwords($fetch_client_info['email'])?><br></p><a style="text-decoration:none; margin-right:20px; color:red;" href="transac.php?user_id=<?=$fetch_client_info['id']?>">Cancel Appointment</a><a style="text-decoration:none;" href="transac.php?users_id=<?=$fetch_client_info['id']?>">Done</a></div>
+                <div class="col-md-9" style="padding-top:0px;"><div style="font-size:10pt; width:500px; margin:auto; border-radius:10px; box-shadow:rgba(99, 99, 99, 0.2)0px 2px 8px 0px; padding:20px;"><h6 style="color:#5065AF;">Customers Information</h6><p>Fullname: <?php echo ucwords($fetch_client_info['userSurname'])?>, <?php echo ucwords($fetch_client_info['userGivenName'])?><br>Birthday: <?php echo ucwords($fetch_client_info['userBirthday'])?><br>Mobile Number: <?php echo ucwords($fetch_client_info['userContactNumber'])?><br>Email Address: <?php echo ucwords($fetch_client_info['userEmail'])?><br></p><a style="text-decoration:none; margin-right:20px; color:red;" href="transac.php?user_id=<?=$fetch_client_info['userID']?>">Cancel Appointment</a><a style="text-decoration:none;" href="transac.php?users_id=<?=$fetch_client_info['userID']?>">Done</a></div>
                 <h5 style="color:#5065AF; margin-top:20px;"><i class='bx bx-book-alt'></i> Patient's Record History</h5>
                 <table style="width:100%; border-collapse:collapse; margin:25px 0; font-size:0.9em; border-radius:5px 5px 0 0; overflow: hidden;">
                     <thead style="background-color:#F1F3FF; text-align:left;">
@@ -121,10 +121,11 @@
 	                        $next_page = $page_no + 1;
 	                        $adjacents = "2";
 
-	                        // $result_count = mysqli_query($connect,"SELECT COUNT(*) As total_records FROM tbl_appointments where date < date(now()) AND doctor = '$email' AND email = '$client_id'");
+	                         $result_count = mysqli_query($connect,"SELECT COUNT(*) As total_records From tbl_appts as t1 left join tbl_useraccount as t2 on t1.userID = t2.userID where userEmail = '$client_id'");
 
-                            $result_count = mysqli_query($connect,"SELECT COUNT(*) As total_records FROM tbl_appts as t1 LEFT JOIN tbl_employee as on (t1.docID = t2.id) left join tbl_useraccount as t3 on t3.userID = t1.userID where date < date(now()) AND t2.email = '$email' AND t3.userEmail = '$client_id'");
+                        //    $result_count = mysqli_query($connect,"SELECT COUNT(*) As total_records FROM tbl_appts as t1 LEFT JOIN tbl_employee as on (t1.docID = t2.id) left join tbl_useraccount as t3 on t3.userID = t1.userID where date < date(now()) AND t2.email = '$email' AND t3.userEmail = '$client_id'");
 
+                       // $result_count = mysqli_query($connect,"SELECT COUNT(*) As total_records FROM tbl_appts where date < date(now()) AND doctor = '$email' AND email = '$client_id'");
 
 	                        $total_records = mysqli_fetch_array($result_count);
 	                        $total_records = $total_records['total_records'];
@@ -134,13 +135,13 @@
 
                             // $get_data_query = "SELECT *, DATEDIFF(date(now()), birthday)/365.25 as age FROM tbl_appointments WHERE date < date(now()) AND doctor = '$email' AND email = '$client_id' ORDER BY time ASC LIMIT $offset, $total_records_per_page";
 
-                            $get_data_query = "SELECT * FROM tbl_useraccount as t1 left join tbl_appts as t2 on t1.userID = t2.userID left join tbl_employee as t3 on t3.id = t2.docID WHERE date < date(now()) AND t3.email = '$email' AND t1.userEmail = '$client_id' ORDER BY time ASC LIMIT $offset, $total_records_per_page";
+                            $get_data_query = "SELECT *,t2.status FROM tbl_useraccount as t1 left join tbl_appts as t2 on t1.userID = t2.userID left join tbl_employee as t3 on t3.id = t2.docID WHERE date < date(now()) AND t3.email = '$email' AND t1.userEmail = '$client_id' ORDER BY t2.time ASC LIMIT $offset, $total_records_per_page";
 
 
                             $get_data = mysqli_query($connect, $get_data_query);
                             for($i=0; $row = mysqli_fetch_array($get_data); $i++){
-                                $doctor = $row['email'];
-                                $see_doctor_query = "SELECT * FROM tbl_employee WHERE email = '$doctor'";
+                                $doctor = $row['docID'];
+                                $see_doctor_query = "SELECT * FROM tbl_employee WHERE id = '$doctor'";
                                 $see_doctor = mysqli_query($connect, $see_doctor_query);
                                 $fetch_see_doctor = mysqli_fetch_assoc($see_doctor);
                         ?>

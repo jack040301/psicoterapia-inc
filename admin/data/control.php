@@ -473,6 +473,7 @@
         $password = "Admin";
         $code = 0;
         $status = "online";
+        
 
         $check_email_query = "SELECT * FROM tbl_employee WHERE email = '$email'";
         $check_email = mysqli_query($connect, $check_email_query);
