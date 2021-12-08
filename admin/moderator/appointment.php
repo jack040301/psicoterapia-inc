@@ -124,8 +124,8 @@
                             $total_no_of_pages = ceil($total_records / $total_records_per_page);
 	                        $second_last = $total_no_of_pages - 1;
 
-                            $get_data_query = "SELECT *,tbl_appts.status FROM tbl_appts WHERE date = date(now()) ORDER BY docID ASC LIMIT $offset, $total_records_per_page";
-                           
+                            $get_data_query = "SELECT *,t2.status FROM tbl_useraccount as t1 left join tbl_appts as t2 on t1.userID = t2.userID left join tbl_employee as t3 on t3.id = t2.docID  WHERE date = date(now()) ORDER BY t2.time ASC LIMIT $offset, $total_records_per_page ";
+                    
                             $get_data = mysqli_query($connect, $get_data_query);
                             for($i=0; $row = mysqli_fetch_array($get_data); $i++){
                                 $doctor = $row['docID'];
