@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2021 at 05:06 PM
+-- Generation Time: Dec 07, 2021 at 03:34 PM
 -- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.11
+-- PHP Version: 8.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_psicoterapia`
+-- Database: `db_v2psicoterapia`
 --
 
 -- --------------------------------------------------------
@@ -69,8 +69,9 @@ CREATE TABLE `tbl_appts` (
 --
 
 INSERT INTO `tbl_appts` (`apptID`, `userID`, `docID`, `date`, `time`, `status`, `apptDateCreated`) VALUES
-('1', '3', '1', '2021-12-06', '13:00:00', 'default', '12-05-2021'),
-('2', '3', '2', '2021-12-08', '14:00:00', 'default', '12-05-2021');
+('1', '3', '1', '2021-12-06', '13:00:00', 'expired', '12-05-2021'),
+('2', '3', '2', '2021-12-08', '14:00:00', 'expired', '12-05-2021'),
+('3', '3', '1', '2021-12-09', '13:00:00', 'pending', '12-07-2021');
 
 -- --------------------------------------------------------
 
@@ -147,7 +148,7 @@ CREATE TABLE `tbl_employee` (
 --
 
 INSERT INTO `tbl_employee` (`id`, `picture`, `lastname`, `firstname`, `birthday`, `position`, `time`, `start_date`, `end_date`, `mobile`, `email`, `tempomail`, `password`, `code`, `status`, `created`) VALUES
-(1, 'IMG-61a88ecab78eb7.69831696.jpg', 'vachiravit', 'paisarnkulwong', '1996-08-31', 'doctor', '13:00:00', '2021-12-04', '2021-12-11', '09123456789', 'august@gmail.com', NULL, '$2y$10$myVWRV15xZ/JfVRyMrjcUOCMGPfM4UgG1U2dbT2k5kr.Zux2Hol2S', 0, 'online', '2021-11-25'),
+(1, 'IMG-61a88ecab78eb7.69831696.jpg', 'vachiravit', 'paisarnkulwong', '1996-08-31', 'doctor', '16:00:00', '2021-12-07', '2021-12-11', '09123456789', 'august@gmail.com', NULL, '$2y$10$myVWRV15xZ/JfVRyMrjcUOCMGPfM4UgG1U2dbT2k5kr.Zux2Hol2S', 0, 'online', '2021-11-25'),
 (2, 'IMG-61a8901deddae5.15413575.jpg', 'thanasrivanitchai', 'pakorn', '1992-10-08', 'doctor', '14:00:00', '2021-12-04', '2021-12-31', '09123456789', 'pakorn@gmail.com', 'pakorn@gmail.com', '$2y$10$vNJX3cb7o3P9CMwNlXGGf.4SRkTqAehFoFvxwlUqw5Rzok27DySdG', 0, 'online', '2021-11-25'),
 (3, 'IMG-61a8953669f545.40667264.jpg', 'watthanasetsiri', 'pirapat', '1994-02-23', 'moderator', '09:00:00', '2021-11-29', '2021-12-13', '09123456789', 'pirapat@gmail.com', 'pirapat@gmail.com', '$2y$10$9cEWO91zYw6cRIYNgzMuZej289T1RJKVMNCsVJjBH7XL7s5Np4FKm', 0, 'online', '2021-11-26'),
 (4, 'profile.png', 'cabullo', 'danica', '2001-03-04', 'doctor', '13:00:00', '2021-12-10', '2021-12-11', '0909090909', 'danicacabullo@gmail.com', NULL, '$2y$10$HL/5p0hNqZuBbL2fpdDJ/OjEHoZmu7iIPgAhUTCFHtu4Z84wYaiNu', 0, 'online', '2021-12-04');
@@ -235,7 +236,8 @@ CREATE TABLE `tbl_useraccount` (
 INSERT INTO `tbl_useraccount` (`userID`, `userImage`, `userGivenName`, `userSurname`, `userFullname`, `userUsername`, `userContactNumber`, `userAddress`, `userBirthday`, `userAge`, `userEmail`, `userPassword`, `userCode`, `userFPCode`, `userStatus`) VALUES
 ('1', '', 'Dem', 'ROvira', 'Dem ROvira', 'leonida', '09673222205', 'BLOCK 39 LOT 15', '1997-01-28', '24', 'demverleenespinola07@gmail.com', 'spM4Gpog', '0', '0', 'verified'),
 ('2', '', 'DEMVERLEEN', 'ESPINOLA', 'DEMVERLEEN ESPINOLA', 'DEM', '09673522220', 'CALOOCAN CITY', '1999-10-07', '22', 'espinola.demverleen.bscs2019@gmail.com', '4tJvStt3a9X1w/M5', '0', '0', 'verified'),
-('3', 'uploads/default.png', 'DEM', 'ESPINOLA', 'DEM ESPINOLA', 'ASD', '09673222205', 'CALOOCAN CITY', '1999-10-07', '22', 'espinola.demverleen@gmail.com', 'spM4', '0', '0', 'verified');
+('3', 'uploads/default.png', 'DEM', 'ESPINOLA', 'DEM ESPINOLA', 'ASD', '09673222205', 'CALOOCAN CITY', '1999-10-07', '22', 'espinola.demverleen@gmail.com', 'spM4', '0', '0', 'verified'),
+('4', 'uploads/default.png', 'jack', 'daisuki', 'jack daisuki', 'jack daisuki', '09194958198', 'camarin caloocan city', '2003-12-11', '17', 'jackdaisuki04@gmail.com', '4tJvGpogbtLw', '0', '0', 'verified');
 
 --
 -- Indexes for dumped tables
