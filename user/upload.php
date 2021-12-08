@@ -52,11 +52,11 @@ if(isset($_POST['submit'])){
 
 
 
-                            $fileDestination = 'uploads/'.$fileNameNew;
-                            $twoDestination  = '../main/user/uploads'.$fileNameNew;
+                            $fileDestination = $fileNameNew;
+//                            $twoDestination  = '../main/user/uploads'.$fileNameNew;
 
                             move_uploaded_file($fileTmpName,$twoDestination);
-                            move_uploaded_file($fileTmpName,$fileDestination);
+  //                          move_uploaded_file($fileTmpName,$fileDestination);
                           
                           
 

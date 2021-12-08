@@ -47,7 +47,7 @@
                         <input style="margin-top:20px; font-size:8pt; padding:10px; width:100px;" name="moderator_forgot" type="submit" value="Send OTP" class="btn btn-primary">
                     </form>
                 </div>
-                <p style="margin-top:10px; font-size:9pt;"><< Go Back to <a href="superadmin.php" style="color:#5065AF; text-decoration:none;">Login</a></p>
+                <p style="margin-top:10px; font-size:9pt;"><< Go Back to <a href="doctor.php" style="color:#5065AF; text-decoration:none;">Login</a></p>
                 <hr style="margin-top: 20%;">
                 <p  style="margin-top: 2%; font-size: 9pt;">&copy; <?php echo $today_year; ?> <?php echo ucwords($fetch_company_details['companyname1']); ?><?php echo strtolower($fetch_company_details['companyname2']); ?> <?php echo ucwords($fetch_company_details['organization']); ?>, All rights reserved</p>
             </div>
