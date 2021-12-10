@@ -443,7 +443,7 @@
     }
 
     // superadmin change doctors schedule
-    if(isset($_POST['doctors_schedule'])){
+    if(isset($_POST['doctors_schedule']) && !empty($_POST['timeslot'])){
         $id = mysqli_real_escape_string($connect, $_POST['doctors_id']);
         $timeslot = mysqli_real_escape_string($connect, $_POST['timeslot']);
         $start = mysqli_real_escape_string($connect, $_POST['start_date']);
@@ -455,7 +455,6 @@
             $xmessage['message'] = "New Schedule From: $start to $end";
         }
     }
-
     // superadmin register new account
     if(isset($_POST['register'])){
         $position1 = mysqli_real_escape_string($connect, $_POST['position']);

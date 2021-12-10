@@ -134,8 +134,8 @@
                                 </tr>
                                 <tr>
                                     <form action="profile.php" method="post">
-                                    <td><input type="email" name="email" style="font-size:9pt;" class="form-control" ondrop="return false;" onpaste="return false;" placeholder="Email Address" required="Required"></td>
-                                    <td><input name="change_emails" type="submit" value="Change" style="background:none; border:none;color:#5065AF;"></td>
+                                    <td><input type="email" name="email" style="font-size:9pt;" class="form-control" ondrop="return false;" onpaste="return false;" placeholder="Email Address" required="Required" disabled></td>
+                                    <td><input name="change_emails" type="submit" value="Change" style="background:none; border:none;color:#5065AF;" disabled hidden></td>
                                     </form>
                                 </tr>
                             </tbody>

@@ -274,7 +274,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 					// echo $maxUserId;
 
-					$subject = "Email Verification Code";`
+					$subject = "Email Verification Code";
 
 			        $message = "Your verification code is $code";
 

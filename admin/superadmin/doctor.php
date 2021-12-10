@@ -127,7 +127,7 @@
                         ?>
                             <form action="doctor.php" method="post">
                             <input type="number" value="<?php echo $row['id']; ?>" name="doctors_id" style="display:none;"/>
-                            <tr style="border-bottom:2px solid whitesmoke;"><td><?php echo $row['id']; ?></td><td><?php echo ucwords($row['lastname']); ?></td><td><?php echo ucwords($row['firstname']); ?></td><td><select name="timeslot" style="padding:5px;">
+                            <tr style="border-bottom:2px solid whitesmoke;"><td><?php echo $row['id']; ?></td><td><?php echo ucwords($row['lastname']); ?></td><td><?php echo ucwords($row['firstname']); ?></td><td><select name="timeslot" style="padding:5px;" required>
                             <option disabled hidden selected><?php echo $row['time'];?></option>
                                 <?php 
                                     $time_query = "SELECT * FROM tbl_time";
@@ -137,7 +137,7 @@
                                 ?>
                                 <option><?php echo $rows['time'];?></option>
                                 <?php }} ?>
-                            </select></td><td><input style="padding:5px;"name="start_date" type="date" min="<?php echo $today_date; ?>" max="<?php echo $row['end_date']; ?>" value="<?php echo $row['start_date']; ?>"/></td><td><input style="padding:5px;" name="end_date" type="date" min= "<?php echo $row['start_date']; ?>" value="<?php echo $row['end_date']; ?>"/></td><td>
+                            </select></td><td><input style="padding:5px;"name="start_date" type="date" min="<?php echo $today_date; ?>" max="<?php echo $row['end_date']; ?>" value="<?php echo $row['start_date']; ?>" required/></td><td><input style="padding:5px;" name="end_date" type="date" min= "<?php echo $row['start_date']; ?>" value="<?php echo $row['end_date']; ?>"/></td><td>
                             <input style="font-size: 9pt; width: 80px;" name="doctors_schedule" type="submit"class="btn btn-primary" value="Update"/>
                             </td></tr></form>
                         <?php } ?>

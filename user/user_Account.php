@@ -556,7 +556,7 @@ input:focus {
 
   //$time_now = date("Y-m-d h:i:s a");
 
-  $time_now = date("m/d/Y");
+  $time_now = date("Y-m-d");
 
  
 
