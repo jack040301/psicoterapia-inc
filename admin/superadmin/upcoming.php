@@ -134,7 +134,7 @@
                                 $see_doctor = mysqli_query($connect, $see_doctor_query);
                                 $fetch_see_doctor = mysqli_fetch_assoc($see_doctor);
                         ?>
-                            <tr style="border-bottom:2px solid whitesmoke;"><td><?php echo $row['id']; ?></td><td><?php echo $row['date']; ?></td><td><?php echo ucwords($row['userSurname']); ?></td><td><?php echo ucwords($row['userGivenName']); ?></td><td><?php echo number_format($row['userAge']); ?></td><td><?php echo $row['userContactNumber']; ?></td><td>Doc. <?php echo ucwords($fetch_see_doctor['lastname']); ?></td><td><?php echo ucwords($row['status']); ?></td></tr>
+                            <tr style="border-bottom:2px solid whitesmoke;"><td><?php echo $row['apptID']; ?></td><td><?php echo $row['date']; ?></td><td><?php echo ucwords($row['userSurname']); ?></td><td><?php echo ucwords($row['userGivenName']); ?></td><td><?php echo number_format($row['userAge']); ?></td><td><?php echo $row['userContactNumber']; ?></td><td>Doc. <?php echo ucwords($fetch_see_doctor['lastname']); ?></td><td><?php echo ucwords($row['status']); ?></td></tr>
                         <?php } ?>
                     </tbody>
                 </table>

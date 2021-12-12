@@ -237,4 +237,14 @@
         }
     ?>
 
+<?php
+        if(isset($ymessage['message'])){
+            $message = $ymessage['message'];
+            foreach($ymessage as $showerror){
+                echo "<script>swal('Incomplete Data', '$message', 'error')</script>";
+            }
+            $ymessage = null;
+        }
+    ?>
+
 </html>

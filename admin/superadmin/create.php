@@ -110,6 +110,7 @@
                 <img style="margin-top:20px;" class="img-fluid" src="../resources/signinPoster.png"/>
             </div>
 
+         
             <!-- Right Side -->
             <div style="padding: 50px;" class="col-md-6">
                 <label>Register New</label>
@@ -124,10 +125,10 @@
                         </select>
 
                         <label style="margin-top:20px; font-size:9pt;" class="FormLabel form-label"><i class='bx bx-book-content'></i> Firstname</label>
-                        <input style="font-size:8pt; padding:10px;" name="firstname" type="text" ondrop="return false;" onpaste="return false;" class="form-control" placeholder="Firstname" required="Required">
+                        <input id="givenName" name="firstname" style="font-size:8pt; padding:10px;"  type="text" ondrop="return false;" onpaste="return false;" class="form-control" placeholder="Firstname" required="Required" onkeypress="return alphaOnly(event)">
 
                         <label style="margin-top:20px; font-size:9pt;" class="FormLabel form-label"><i class='bx bx-book-content'></i> Lastname</label>
-                        <input style="font-size:8pt; padding:10px;" name="lastname" type="text" ondrop="return false;" onpaste="return false;" class="form-control" placeholder="Lastname" required="Required">
+                        <input style="font-size:8pt; padding:10px;" name="lastname"  id="lastname2" type="text" ondrop="return false;" onpaste="return false;" class="form-control" placeholder="Lastname" required="Required" onkeypress="return alphaOnly(event)" >
 
                         <label style="margin-top:20px; font-size:9pt;" class="FormLabel form-label"><i class='bx bx-cake'></i> Birthday</label>
                         <input style="font-size:8pt; padding:10px;" name="birthday" type="date" max="<?php echo $lastYear = date("Y-m-d", strtotime("-18 years")); ?>" ondrop="return false;" onpaste="return false;" class="form-control" required="Required">
@@ -154,7 +155,21 @@
             if (window.history.replaceState) {
                 window.history.replaceState(null, null, window.location.href);
             }
+
+    
         </script>
+   <script>
+       
+    function alphaOnly(event) {
+       var value = String.fromCharCode(event.which);
+       var pattern = new RegExp(/[a-zA-Z]/i);
+       return pattern.test(value);
+    }
+
+   
+                </script>
+
+        
         <script src="../script/navigation.js"></script>
         <script src="../script/contact.js"></script>
         <script src="../script/voidletters.js"></script>

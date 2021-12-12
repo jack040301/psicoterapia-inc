@@ -39,6 +39,9 @@
     $total_yesterday_appointment = $fetch_yesterday_appointment['total_appointment'];
 
     // total yesterday success appointment
+
+    $time_now = date("Y-m-d");
+
     $total_yesterday_success_appointment = 0;
     $yesterday_success_appointment_query = "SELECT COUNT(status) as total_success FROM tbl_appts WHERE status = 'done' AND date = date(now())-1";
     $yesterday_success_appointment = mysqli_query($connect, $yesterday_success_appointment_query);
@@ -443,17 +446,27 @@
     }
 
     // superadmin change doctors schedule
-    if(isset($_POST['doctors_schedule']) && !empty($_POST['timeslot'])){
-        $id = mysqli_real_escape_string($connect, $_POST['doctors_id']);
-        $timeslot = mysqli_real_escape_string($connect, $_POST['timeslot']);
-        $start = mysqli_real_escape_string($connect, $_POST['start_date']);
-        $end = mysqli_real_escape_string($connect, $_POST['end_date']);
+    if(isset($_POST['doctors_schedule'])){
+      
 
-        $doctors_info_query = "UPDATE tbl_employee SET start_date = '$start', end_date ='$end', time = '$timeslot' WHERE id = $id";
-        $doctors_info = mysqli_query($connect, $doctors_info_query);
-        if($doctors_info){
-            $xmessage['message'] = "New Schedule From: $start to $end";
+        if(!empty($_POST['timeslot']) && !empty($_POST['start_date']) && !empty($_POST['end_date'])){
+
+            $id = mysqli_real_escape_string($connect, $_POST['doctors_id']);
+            $timeslot = mysqli_real_escape_string($connect, $_POST['timeslot']);
+            $start = mysqli_real_escape_string($connect, $_POST['start_date']);
+            $end = mysqli_real_escape_string($connect, $_POST['end_date']);
+
+            
+            $doctors_info_query = "UPDATE tbl_employee SET start_date = '$start', end_date ='$end', time = '$timeslot' WHERE id = $id";
+            $doctors_info = mysqli_query($connect, $doctors_info_query);
+            if($doctors_info){
+                $xmessage['message'] = "New Schedule From: $start to $end";
+            }  
+        }else{
+            $ymessage['message'] = "Please update all the fields";
         }
+
+      
     }
     // superadmin register new account
     if(isset($_POST['register'])){

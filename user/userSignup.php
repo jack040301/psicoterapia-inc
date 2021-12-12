@@ -106,7 +106,7 @@ if(!empty($_SESSION['userID'])){
 
 		        	<label>First Name</label>
 
-        			<input type="text" id="givenName" name="givenName"  autocomplete="username" placeholder="First Name" required="Required" onpaste="return false;" ondrop="return false;">
+        			<input type="text" id="givenName" name="givenName"  autocomplete="username" placeholder="First Name" required="Required" onpaste="return false;" ondrop="return false;" pattern="[a-zA-Z'-'\s]*"  onkeypress="return alphaOnly(event)">
 
 		        </div>
 
@@ -114,7 +114,7 @@ if(!empty($_SESSION['userID'])){
 
 			        <label>Last Name</label>
 
-			        <input type="text" id="surename" name="surename"  autocomplete="username" placeholder="Last Name" required="Required" onpaste="return false;" ondrop="return false;">
+			        <input type="text" id="surename" name="surename"  autocomplete="username" placeholder="Last Name" required="Required" onpaste="return false;" ondrop="return false;"  onkeypress="return alphaOnly(event)">
 
 		      </div>
 
@@ -212,7 +212,12 @@ if(!empty($_SESSION['userID'])){
 
    });
 
+
+   
+
   	</script>
+
+	  
 
 </body>
 
@@ -253,6 +258,18 @@ function myFunction() {
 }
 
   </script>
+
+<script>
+       
+	   function alphaOnly(event) {
+		  var value = String.fromCharCode(event.which);
+		  var pattern = new RegExp(/[a-zA-Z]/i);
+		  return pattern.test(value);
+	   }
+   
+	  
+				   </script>
+   
 
 <script>function isNumberKey(evt) {
 

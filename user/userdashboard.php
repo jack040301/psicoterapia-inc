@@ -636,7 +636,7 @@ input:focus {
 
 <label id='label' for="input"><i class="fa fa-search" style="font-size: 13px;"></i></label>
 
-             <input type="submit" name="btnSearch" class="btnSearch btn btn-success" value="Search" id="btnSearch">
+             <input type="submit" name="btnSearch" class="btnSearch btn btn-success" value="Search" id="btnSearch" hidden>
 
                </form>
 
